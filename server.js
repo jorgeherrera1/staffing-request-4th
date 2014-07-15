@@ -1,10 +1,15 @@
 'use strict';
 
+// module dependencies
 var express = require('express'),
     app = express();
 
-app.listen(3000, function() {
-    console.log('[%s] Listening on port: %d', 'development', 3000);
+// configure app
+require(__dirname + '/config')(app);
+
+// start server
+app.listen(app.get('config').port, function() {
+    console.log('[%s] Listening on port: %d', app.get('config').env, app.get('config').port);
 });
 
 module.exports = app;
