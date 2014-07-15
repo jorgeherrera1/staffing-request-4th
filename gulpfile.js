@@ -23,6 +23,11 @@ gulp.task('js', function() {
         .pipe(gulp.dest('./public/js'));
 });
 
+gulp.task('images', function() {
+    return gulp.src('./app/img/*.jpg')
+        .pipe(gulp.dest('./public/img'))
+});
+
 gulp.task('lib', function() {
     return gulp.src([
         './bower_components/jquery/dist/jquery.js',
@@ -32,3 +37,18 @@ gulp.task('lib', function() {
         .pipe(concat('lib.js'))
         .pipe(gulp.dest('./public/js'));
 });
+
+gulp.task('lib-flight', function() {
+    return gulp.src('./bower_components/flight/lib/*.js')
+        .pipe(uglify())
+        .pipe(gulp.dest('./public/js/flight/lib'));
+});
+
+gulp.task('build', ['less', 'js', 'images', 'lib', 'lib-flight']);
+
+gulp.task('watch', function() {
+    gulp.watch('./app/less/*.less', ['less']);
+    gulp.watch('./app/js/**/*.js', ['js']);
+});
+
+gulp.task('default', ['build', 'watch']);
