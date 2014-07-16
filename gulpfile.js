@@ -3,6 +3,7 @@
 var gulp = require('gulp'),
     clean = require('gulp-rimraf'),
     less = require('gulp-less'),
+    jshint = require('gulp-jshint'),
     concat = require('gulp-concat'),
     uglify = require('gulp-uglify');
 
@@ -17,7 +18,13 @@ gulp.task('less', function() {
         .pipe(gulp.dest('./public/css/'));
 });
 
-gulp.task('js', function() {
+gulp.task('lint', function () {
+    return gulp.src('./app/js/**/*.js')
+        .pipe(jshint('.jshintrc'))
+        .pipe(jshint.reporter('default'));
+});
+
+gulp.task('js', ['lint'], function() {
     return gulp.src('./app/js/**/*.js')
         .pipe(uglify())
         .pipe(gulp.dest('./public/js'));

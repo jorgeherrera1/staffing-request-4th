@@ -2,8 +2,6 @@
 
 define(function () {
 
-    'use strict';
-
     /**
      * Module dependencies
      */
