@@ -5,7 +5,10 @@ var gulp = require('gulp'),
     less = require('gulp-less'),
     jshint = require('gulp-jshint'),
     concat = require('gulp-concat'),
-    uglify = require('gulp-uglify');
+    uglify = require('gulp-uglify'),
+    livereload = require('gulp-livereload'),
+    lr = require('tiny-lr'),
+    server = lr();
 
 gulp.task('clean', function() {
     return gulp.src('./public', { read: false })
@@ -15,7 +18,8 @@ gulp.task('clean', function() {
 gulp.task('less', function() {
     return gulp.src('./app/less/app.less')
         .pipe(less({ cleancss: true }))
-        .pipe(gulp.dest('./public/css/'));
+        .pipe(gulp.dest('./public/css/'))
+        .pipe(livereload(server, { auto: false }));
 });
 
 gulp.task('lint', function () {
@@ -27,7 +31,8 @@ gulp.task('lint', function () {
 gulp.task('js', ['lint'], function() {
     return gulp.src('./app/js/**/*.js')
         .pipe(uglify())
-        .pipe(gulp.dest('./public/js'));
+        .pipe(gulp.dest('./public/js'))
+        .pipe(livereload(server, { auto: false }));
 });
 
 gulp.task('images', function() {
@@ -54,8 +59,14 @@ gulp.task('lib-flight', function() {
 gulp.task('build', ['less', 'js', 'images', 'lib', 'lib-flight']);
 
 gulp.task('watch', function() {
+    server.listen(35729, function (err) {
+        if (err) { return console.log(err); }
+    });
+
     gulp.watch('./app/less/*.less', ['less']);
     gulp.watch('./app/js/**/*.js', ['js']);
 });
 
-gulp.task('default', ['build', 'watch']);
+gulp.task('default', ['build', 'watch'], function() {
+    var app = require('./server');
+});
