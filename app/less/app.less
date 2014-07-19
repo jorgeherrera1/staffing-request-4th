@@ -3,12 +3,21 @@
 @import "variables";
 
 body {
-  margin: 0;
-  padding: 0;
   color: #ffffff;
-}
-
-.background {
   background-image: url(/img/bg.jpg);
   background-size: cover;
+}
+
+label, input {
+  font-weight: 200 !important;
+}
+
+.signin-box {
+  background-color: rgba(19, 82, 144, 0.6);
+  padding: 20px;
+  .make-md-column-offset(6);
+
+  input[type=submit] {
+    width: 100%;
+  }
 }

@@ -12,18 +12,27 @@
     <link rel="stylesheet" href="css/app.css">
 </head>
 <body>
-<div class="background">
-    <div class="container">
-        <header>
-            <h1>Staffing Request</h1>
-        </header>
-        <form method="post">
-            <h2>Sign In</h2>
-            <label for="email">Email address</label>
-            <input id="email" name="email" type="email" placeholder="bart.simpson@4thsource.com" required>
-            <label for="password">Password</label>
-            <input id="password" name="password" type="password" placeholder="secret" required>
-            <input type="submit" value="Sign up">
+<div class="container">
+    <header>
+        <h1>Staffing Request</h1>
+    </header>
+    <div class="signin-box">
+        <h2>Sign In</h2>
+        <form role="form" method="post">
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <input id="email" name="email" type="email" class="form-control" placeholder="homer.simpson@4thsource.com" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input id="password" name="password" type="password" class="form-control" placeholder="ouch!" required>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox"><small>Remember me</small>
+                </label>
+            </div>
+            <input type="submit" class="btn btn-default" value="Sign in">
         </form>
     </div>
 </div>
