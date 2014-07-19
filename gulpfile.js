@@ -36,7 +36,7 @@ gulp.task('js', ['lint'], function() {
 });
 
 gulp.task('images', function() {
-    return gulp.src('./app/img/*.jpg')
+    return gulp.src('./app/img/*.*')
         .pipe(gulp.dest('./public/img'))
 });
 
@@ -68,5 +68,5 @@ gulp.task('watch', function() {
 });
 
 gulp.task('default', ['build', 'watch'], function() {
-    var app = require('./server');
+    require('./server');
 });

@@ -2,6 +2,7 @@
 
 // module dependencies
 var express = require('express'),
+    favicon = require('serve-favicon'),
     engines = require('consolidate'),
     logger = require('morgan'),
     bodyParser = require('body-parser');
@@ -11,6 +12,8 @@ module.exports = function(app) {
     // view engine setup
     app.engine('html', engines.hogan);
     app.set('view engine', 'html');
+
+    app.use(favicon(process.cwd() + '/public/img/favicon.ico'));
 
     // logger
     if (app.get('config').env === 'production') {
