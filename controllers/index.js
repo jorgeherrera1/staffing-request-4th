@@ -3,8 +3,12 @@
 module.exports = {
 
     index: function(req, res) {
-        console.log('index');
-        res.render('index');
+        res.render('layout', {
+            title: 'Staffing Request',
+            partials: {
+                'page': 'login'
+            }
+        });
     }
 
 };

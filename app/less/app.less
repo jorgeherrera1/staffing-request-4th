@@ -12,12 +12,16 @@ label, input {
   font-weight: 200 !important;
 }
 
-.signin-box {
-  background-color: rgba(19, 82, 144, 0.6);
-  padding: 20px;
-  .make-md-column-offset(6);
+.page {
+  .make-row();
 
-  input[type=submit] {
-    width: 100%;
+  .signin-box {
+    background-color: rgba(19, 82, 144, 0.6);
+    padding: 20px;
+    .make-md-column-offset(6);
+
+    input[type=submit] {
+      width: 100%;
+    }
   }
 }
