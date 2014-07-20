@@ -28,6 +28,6 @@ module.exports = function(app) {
     // serve static content
     app.use(express.static('public'));
 
-    require(process.cwd() + '/routes/index')(app);
+    app.use('/', require(process.cwd() + '/routes/index'));
 
 };

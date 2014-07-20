@@ -1,10 +1,11 @@
 'use strict';
 
-var indexCtrl = require(process.cwd() + '/controllers/index');
+var express = require('express'),
+    router = express.Router(),
+    indexCtrl = require(process.cwd() + '/controllers/index');
 
-module.exports = function(app) {
+router.get('/', indexCtrl.index);
 
-    app.route('/')
-        .get(indexCtrl.index);
+router.get('/login', indexCtrl.login);
 
-};
+module.exports = router;
