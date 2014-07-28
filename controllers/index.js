@@ -1,18 +1,23 @@
 'use strict';
 
-module.exports = {
+exports.getIndex = function(req, res) {
+    res.redirect('/login');
+};
 
-    index: function(req, res) {
-        res.redirect('/login');
-    },
+exports.getLogin = function(req, res) {
+    res.render('layout', {
+        title: 'Staffing Request',
+        partials: {
+            'page': 'login'
+        }
+    });
+};
 
-    login: function(req, res) {
-        res.render('layout', {
-            title: 'Staffing Request',
-            partials: {
-                'page': 'login'
-            }
-        });
-    }
-
+exports.getStaffingRequest = function(req, res) {
+    res.render('layout', {
+        title: 'Staffing Request',
+        partials: {
+            'page': 'staffing-request'
+        }
+    });
 };

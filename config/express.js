@@ -5,7 +5,11 @@ var express = require('express'),
     favicon = require('serve-favicon'),
     engines = require('consolidate'),
     logger = require('morgan'),
-    bodyParser = require('body-parser');
+    bodyParser = require('body-parser'),
+    expressValidator = require('express-validator'),
+    session = require('express-session'),
+    passport = require('passport'),
+    flash = require('connect-flash');
 
 module.exports = function(app) {
 
@@ -24,10 +28,28 @@ module.exports = function(app) {
 
     // parse application/json
     app.use(bodyParser.json());
+    app.use(bodyParser.urlencoded({ extended: true }));
+
+    // request validator
+    app.use(expressValidator());
+
+    // session support
+    app.use(session({
+        name: 'staffing-request-4th-sid',
+        saveUninitialized: true,
+        resave: true,
+        secret: 'ThisIsACoolStaffingRequestApp!'
+    }));
+
+    // passport support
+    require(__dirname + '/passport')(passport);
+    app.use(passport.initialize());
+    app.use(passport.session());
+    app.use(flash());
 
     // serve static content
     app.use(express.static('public'));
 
-    app.use('/', require(process.cwd() + '/routes/index'));
+    app.use('/', require(process.cwd() + '/routes')(passport));
 
 };

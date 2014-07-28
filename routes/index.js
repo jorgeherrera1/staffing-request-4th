@@ -2,10 +2,32 @@
 
 var express = require('express'),
     router = express.Router(),
-    indexCtrl = require(process.cwd() + '/controllers/index');
+    controllers = require(process.cwd() + '/controllers');
 
-router.get('/', indexCtrl.index);
+function isLoggedIn(req, res, next) {
+    if (req.isAuthenticated()) {
+        return next();
+    }
 
-router.get('/login', indexCtrl.login);
+    res.redirect('/login');
+}
 
-module.exports = router;
+module.exports = function(passport) {
+
+    router.get('/', controllers.getIndex);
+
+    router.get('/login', controllers.getLogin);
+
+    router.post('/login',
+        passport.authenticate('local', {
+                successRedirect: '/staffing-request',
+                failureRedirect: '/login',
+                failureFlash: true
+            }
+        )
+    );
+
+    router.get('/staffing-request', isLoggedIn, controllers.getStaffingRequest);
+
+    return router;
+};
