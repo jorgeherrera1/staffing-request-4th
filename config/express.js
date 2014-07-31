@@ -17,14 +17,16 @@ module.exports = function(app) {
     app.engine('html', engines.hogan);
     app.set('view engine', 'html');
 
-    app.use(favicon(process.cwd() + '/public/img/favicon.ico'));
-
     // logger
     if (app.get('config').env === 'production') {
         app.use(logger());
     } else {
         app.use(logger('dev'));
     }
+
+    // serve static content
+    app.use(express.static('public'));
+    app.use(favicon(process.cwd() + '/public/img/favicon.ico'));
 
     // parse application/json
     app.use(bodyParser.json());
@@ -46,9 +48,6 @@ module.exports = function(app) {
     app.use(passport.initialize());
     app.use(passport.session());
     app.use(flash());
-
-    // serve static content
-    app.use(express.static('public'));
 
     app.use('/', require(process.cwd() + '/routes')(passport));
 
