@@ -1,3 +1,94 @@
 <div class="staffing-request">
-    <h2>In Construction...</h2>
+    <form role="form">
+        <div class="box row">
+            <div class="form-group col-md-4">
+                <label for="requestedBy">Requested By</label>
+                <input id="requestedBy" type="text">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="requestedDate">Requested On</label>
+                <input id="requestedDate" type="date">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="newOrPresale">New or Presale?</label>
+                <div id="newOrPresale" class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-primary active">
+                        <input type="radio" name="options" id="requestNew" checked>New
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="options" id="requestPresale">Presale
+                    </label>
+                </div>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="dateNeeded">Date Needed</label>
+                <input id="dateNeeded" type="date">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="companyName">Company Name</label>
+                <input id="companyName" type="text">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="contactName">Contact Name</label>
+                <input id="contactName" type="text">
+            </div>
+        </div>
+        <div class="box row">
+            <div class="form-group col-md-4">
+                <label for="newOrBackfill">New or Backfill?</label>
+                <div id="newOrBackfill" class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-primary active">
+                        <input type="radio" name="options" id="positionNew" checked>New
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="options" id="positionBackfill">Backfill
+                    </label>
+                </div>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="positionName">Position</label>
+                <input id="positionName" type="text">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="minimumExperience">Minimum Experience</label>
+                <input id="minimumExperience" type="text">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="location">Location</label>
+                <input id="location" type="text">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="length">Length</label>
+                <input id="length" type="text">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="travelRequired">Travel Required?</label>
+                <div id="travelRequired" class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-primary active">
+                        <input type="radio" name="options" id="travelPossible" checked>Possible
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="options" id="travelYes">Yes
+                    </label>
+                    <label class="btn btn-primary">
+                        <input type="radio" name="options" id="travelNo">No
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="box row">
+            <div class="form-group col-md-4">
+                <label for="englishLevel">English Level</label>
+                <input id="englishLevel" type="text">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="requiredSkills">Required Skills</label>
+                <input id="requiredSkills" type="text">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="additionalDetails">Additional Details</label>
+                <textarea id="additionalDetails" rows="5"></textarea>
+            </div>
+        </div>
+    </form>
 </div>

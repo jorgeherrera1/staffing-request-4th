@@ -8,20 +8,19 @@ body {
   background-size: cover;
 }
 
-label, input {
-  font-weight: 200 !important;
+label {
+  font-weight: normal;
+}
+
+.box {
+  background-color: rgba(19, 82, 144, 0.6);
 }
 
 .page {
   .make-row();
 
   .signin-box {
-    background-color: rgba(19, 82, 144, 0.6);
-    padding: 20px;
     .make-md-column-offset(6);
-
-    input[type=submit] {
-      width: 100%;
-    }
+    padding: 20px;
   }
 }
