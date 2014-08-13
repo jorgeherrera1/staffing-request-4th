@@ -30,7 +30,7 @@ gulp.task('lint', function () {
 
 gulp.task('js', ['lint'], function() {
     return gulp.src('./app/js/**/*.js')
-        .pipe(uglify())
+        //.pipe(uglify())
         .pipe(gulp.dest('./public/js'))
         .pipe(livereload(server, { auto: false }));
 });
@@ -44,6 +44,7 @@ gulp.task('lib', function() {
     return gulp.src([
         './bower_components/jquery/dist/jquery.js',
         './bower_components/bootstrap/dist/js/bootstrap.js',
+        './bower_components/typeahead.js/dist/typeahead.bundle.js',
         './bower_components/requirejs/require.js'])
         .pipe(uglify())
         .pipe(concat('lib.js'))

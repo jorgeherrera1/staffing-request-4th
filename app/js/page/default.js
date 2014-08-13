@@ -1,11 +1,11 @@
 'use strict';
 
-define(function () {
+define(function(require) {
 
     /**
      * Module dependencies
      */
-
+    var SubmitRequest = require('component_ui/submit_request');
 
     /**
      * Module exports
@@ -18,6 +18,7 @@ define(function () {
      */
 
     function initialize() {
+        SubmitRequest.attachTo('#submitRequest');
     }
 
 });
