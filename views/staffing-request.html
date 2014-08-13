@@ -1,48 +1,96 @@
 <div class="staffing-request">
     <form role="form">
-        <div id="accordion" class="panel-group">
+        <div class="panel-group">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#staffingRequestInfo">Request #123</a>
-                        <button id="submitRequest" type="submit" class="btn btn-default">Submit</button>
-                    </h4>
+                    <h4 class="panel-title">Request #123</h4>
+                    <button id="submitRequest" type="submit" class="btn btn-default">Submit</button>
                 </div>
-                <div id="staffingRequestInfo" class="panel-collapse collapse in">
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="form-group col-md-4">
-                                <label for="requestedBy">Requested By</label>
-                                <input id="requestedBy" type="text" class="form-control">
-                            </div>
-                            <div class="form-group col-md-4">
-                                <label for="requestedDate">Requested On</label>
-                                <input id="requestedDate" type="text" class="form-control">
-                            </div>
-                            <div class="form-group col-md-4">
-                                <label for="newOrPresale">New or Presale?</label>
-                                <div id="newOrPresale" class="btn-group" data-toggle="buttons">
-                                    <label class="btn btn-primary active">
-                                        <input type="radio" name="options" id="requestNew" checked>New
-                                    </label>
-                                    <label class="btn btn-primary">
-                                        <input type="radio" name="options" id="requestPresale">Presale
-                                    </label>
-                                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label for="requestedBy">Requested By</label>
+                            <input id="requestedBy" type="text" class="form-control">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="requestedDate">Requested On</label>
+                            <input id="requestedDate" type="text" class="form-control">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="newOrPresale">New or Presale?</label>
+                            <div id="newOrPresale" class="btn-group" data-toggle="buttons">
+                                <label class="btn btn-primary active">
+                                    <input type="radio" name="options" id="requestNew" checked>New
+                                </label>
+                                <label class="btn btn-primary">
+                                    <input type="radio" name="options" id="requestPresale">Presale
+                                </label>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="form-group col-md-4">
-                                <label for="dateNeeded">Date Needed</label>
-                                <input id="dateNeeded" type="text" class="form-control">
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label for="dateNeeded">Date Needed</label>
+                            <input id="dateNeeded" type="text" class="form-control">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="companyName">Company Name</label>
+                            <input id="companyName" type="text" class="form-control">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="contactName">Contact Name</label>
+                            <input id="contactName" type="text" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">Position</h4>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label for="newOrBackfill">New or Backfill?</label>
+                            <div id="newOrBackfill" class="btn-group" data-toggle="buttons">
+                                <label class="btn btn-primary active">
+                                    <input type="radio" name="options" id="positionNew" checked>New
+                                </label>
+                                <label class="btn btn-primary">
+                                    <input type="radio" name="options" id="positionBackfill">Backfill
+                                </label>
                             </div>
-                            <div class="form-group col-md-4">
-                                <label for="companyName">Company Name</label>
-                                <input id="companyName" type="text" class="form-control">
-                            </div>
-                            <div class="form-group col-md-4">
-                                <label for="contactName">Contact Name</label>
-                                <input id="contactName" type="text" class="form-control">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="positionName">Position</label>
+                            <input id="positionName" type="text" class="form-control">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="minimumExperience">Minimum Experience</label>
+                            <input id="minimumExperience" type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label for="location">Location</label>
+                            <input id="location" type="text" class="form-control">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="length">Length</label>
+                            <input id="length" type="text" class="form-control">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="travelRequired">Travel Required?</label>
+                            <div id="travelRequired" class="btn-group" data-toggle="buttons">
+                                <label class="btn btn-primary active">
+                                    <input type="radio" name="options" id="travelPossible" checked>Possible
+                                </label>
+                                <label class="btn btn-primary">
+                                    <input type="radio" name="options" id="travelYes">Yes
+                                </label>
+                                <label class="btn btn-primary">
+                                    <input type="radio" name="options" id="travelNo">No
+                                </label>
                             </div>
                         </div>
                     </div>
@@ -50,81 +98,21 @@
             </div>
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#positionInfo">Position</a>
-                    </h4>
+                    <h4 class="panel-title">Skills</h4>
                 </div>
-                <div id="positionInfo" class="panel-collapse collapse in">
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="form-group col-md-4">
-                                <label for="newOrBackfill">New or Backfill?</label>
-                                <div id="newOrBackfill" class="btn-group" data-toggle="buttons">
-                                    <label class="btn btn-primary active">
-                                        <input type="radio" name="options" id="positionNew" checked>New
-                                    </label>
-                                    <label class="btn btn-primary">
-                                        <input type="radio" name="options" id="positionBackfill">Backfill
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form-group col-md-4">
-                                <label for="positionName">Position</label>
-                                <input id="positionName" type="text" class="form-control">
-                            </div>
-                            <div class="form-group col-md-4">
-                                <label for="minimumExperience">Minimum Experience</label>
-                                <input id="minimumExperience" type="text" class="form-control">
-                            </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label for="englishLevel">English Level</label>
+                            <input id="englishLevel" type="text" class="form-control">
                         </div>
-                        <div class="row">
-                            <div class="form-group col-md-4">
-                                <label for="location">Location</label>
-                                <input id="location" type="text" class="form-control">
-                            </div>
-                            <div class="form-group col-md-4">
-                                <label for="length">Length</label>
-                                <input id="length" type="text" class="form-control">
-                            </div>
-                            <div class="form-group col-md-4">
-                                <label for="travelRequired">Travel Required?</label>
-                                <div id="travelRequired" class="btn-group" data-toggle="buttons">
-                                    <label class="btn btn-primary active">
-                                        <input type="radio" name="options" id="travelPossible" checked>Possible
-                                    </label>
-                                    <label class="btn btn-primary">
-                                        <input type="radio" name="options" id="travelYes">Yes
-                                    </label>
-                                    <label class="btn btn-primary">
-                                        <input type="radio" name="options" id="travelNo">No
-                                    </label>
-                                </div>
-                            </div>
+                        <div class="form-group col-md-4">
+                            <label for="requiredSkills">Required Skills</label>
+                            <input id="requiredSkills" type="text" class="form-control">
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#skillsInfo">Skills</a>
-                    </h4>
-                </div>
-                <div id="skillsInfo" class="panel-collapse collapse in">
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="form-group col-md-4">
-                                <label for="englishLevel">English Level</label>
-                                <input id="englishLevel" type="text" class="form-control">
-                            </div>
-                            <div class="form-group col-md-4">
-                                <label for="requiredSkills">Required Skills</label>
-                                <input id="requiredSkills" type="text" class="form-control">
-                            </div>
-                            <div class="form-group col-md-4">
-                                <label for="additionalDetails">Additional Details</label>
-                                <textarea id="additionalDetails" class="form-control" rows="5"></textarea>
-                            </div>
+                        <div class="form-group col-md-4">
+                            <label for="additionalDetails">Additional Details</label>
+                            <textarea id="additionalDetails" class="form-control" rows="5"></textarea>
                         </div>
                     </div>
                 </div>
