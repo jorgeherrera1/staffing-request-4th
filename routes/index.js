@@ -29,5 +29,7 @@ module.exports = function(passport) {
 
     router.get('/staffing-request', isLoggedIn, controllers.getStaffingRequest);
 
+    router.post('/staffing-request', isLoggedIn, controllers.postStaffingRequest)
+
     return router;
 };

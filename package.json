@@ -1,53 +1,54 @@
 {
-  "name": "staffing-request-4th",
-  "version": "0.0.1",
-  "description": "Project Staffing Request App",
-  "main": "server.js",
-  "scripts": {
-    "start": "node server.js",
-    "test": "echo \"No tests yet\" && exit 0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/jorgeherrera1/staffing-request-4th.git"
-  },
-  "keywords": [
-    "staffing",
-    "request"
-  ],
-  "author": "Jorge Herrera",
-  "license": "MIT",
-  "private": true,
-  "bugs": {
-    "url": "https://github.com/jorgeherrera1/staffing-request-4th/issues"
-  },
-  "homepage": "https://github.com/jorgeherrera1/staffing-request-4th",
-  "engines": {
-    "node": "0.10.x",
-    "npm": "1.3.x"
-  },
-  "dependencies": {
-    "body-parser": "~1.4.3",
-    "connect-flash": "~0.1.1",
-    "consolidate": "~0.10.0",
-    "express": "~4.5.0",
-    "express-session": "~1.7.1",
-    "express-validator": "~2.3.0",
-    "hogan.js": "~3.0.2",
-    "morgan": "~1.1.1",
-    "passport": "~0.2.0",
-    "passport-local": "~1.0.0",
-    "serve-favicon": "~2.0.1"
-  },
-  "devDependencies": {
-    "bower": "~1.3.7",
-    "gulp": "~3.8.5",
-    "gulp-concat": "~2.2.0",
-    "gulp-jshint": "~1.7.1",
-    "gulp-less": "~1.3.1",
-    "gulp-livereload": "~2.1.0",
-    "gulp-rimraf": "~0.1.0",
-    "gulp-uglify": "~0.3.1",
-    "tiny-lr": "~0.0.9"
-  }
+    "name": "staffing-request-4th",
+    "version": "0.0.1",
+    "description": "Project Staffing Request App",
+    "main": "server.js",
+    "scripts": {
+        "start": "node server.js",
+        "test": "echo \"No tests yet\" && exit 0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/jorgeherrera1/staffing-request-4th.git"
+    },
+    "keywords": [
+        "staffing",
+        "request"
+    ],
+    "author": "Jorge Herrera",
+    "license": "MIT",
+    "private": true,
+    "bugs": {
+        "url": "https://github.com/jorgeherrera1/staffing-request-4th/issues"
+    },
+    "homepage": "https://github.com/jorgeherrera1/staffing-request-4th",
+    "engines": {
+        "node": "0.10.x",
+        "npm": "1.3.x"
+    },
+    "dependencies": {
+        "body-parser": "~1.4.3",
+        "connect-flash": "~0.1.1",
+        "consolidate": "~0.10.0",
+        "express": "~4.5.0",
+        "express-session": "~1.7.1",
+        "express-validator": "~2.3.0",
+        "hogan.js": "~3.0.2",
+        "mongoose": "~3.8.14",
+        "morgan": "~1.1.1",
+        "passport": "~0.2.0",
+        "passport-local": "~1.0.0",
+        "serve-favicon": "~2.0.1"
+    },
+    "devDependencies": {
+        "bower": "~1.3.7",
+        "gulp": "~3.8.5",
+        "gulp-concat": "~2.2.0",
+        "gulp-jshint": "~1.7.1",
+        "gulp-less": "~1.3.1",
+        "gulp-livereload": "~2.1.0",
+        "gulp-rimraf": "~0.1.0",
+        "gulp-uglify": "~0.3.1",
+        "tiny-lr": "~0.0.9"
+    }
 }

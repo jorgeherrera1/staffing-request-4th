@@ -1,5 +1,11 @@
 'use strict';
 
+/**
+ * Module dependencies
+ */
+var mongoose = require('mongoose'),
+    StaffingRequest = mongoose.model('StaffingRequest');
+
 exports.getIndex = function(req, res) {
     res.redirect('/login');
 };
@@ -20,4 +26,11 @@ exports.getStaffingRequest = function(req, res) {
             'page': 'staffing-request'
         }
     });
+};
+
+exports.postStaffingRequest = function(req, res) {
+    var staffingRequest = new StaffingRequest(req.body);
+    staffingRequest.save();
+
+    res.send(200);
 };

@@ -17,6 +17,8 @@ define(function(require) {
 
         this.submitRequest = function(event, data) {
             console.log(data);
+
+            $.post('/staffing-request', data);
         };
 
         this.after('initialize', function() {
