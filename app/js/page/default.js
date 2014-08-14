@@ -5,7 +5,8 @@ define(function(require) {
     /**
      * Module dependencies
      */
-    var SubmitRequest = require('component_ui/submit_request');
+    var SubmitRequest = require('component_data/submit_request');
+    var StaffingRequestForm = require('component_ui/staffing_request_form');
 
     /**
      * Module exports
@@ -18,7 +19,8 @@ define(function(require) {
      */
 
     function initialize() {
-        SubmitRequest.attachTo('#submitRequest');
+        SubmitRequest.attachTo(document);
+        StaffingRequestForm.attachTo('form');
     }
 
 });

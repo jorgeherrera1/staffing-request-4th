@@ -3,7 +3,8 @@
 requirejs.config({
     baseUrl: 'js',
     paths: {
-        'component_ui': 'component/ui'
+        'component_ui': 'component/ui',
+        'component_data': 'component/data'
     }
 });
 
