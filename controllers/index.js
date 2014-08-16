@@ -23,9 +23,9 @@ exports.getStaffingRequest = function(req, res) {
     res.render('layout', {
         title: 'Staffing Request',
         partials: {
-            'page': 'staffing-request',
-            'js': 'js'
-        }
+            'page': 'staffing-request'
+        },
+        js: '<script data-main="js/main.js" src="js/lib.js"></script>'
     });
 };
 
