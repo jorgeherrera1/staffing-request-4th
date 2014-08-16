@@ -23,7 +23,8 @@ exports.getStaffingRequest = function(req, res) {
     res.render('layout', {
         title: 'Staffing Request',
         partials: {
-            'page': 'staffing-request'
+            'page': 'staffing-request',
+            'js': 'js'
         }
     });
 };
