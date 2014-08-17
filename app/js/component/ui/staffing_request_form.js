@@ -10,6 +10,7 @@ define(['flight/lib/component'], function(defineComponent) {
 
         this.defaultAttrs({
             // selectors
+            requestNoSelector: '#requestNo',
             requestedBySelector: '#requestedBy',
             requestedOnSelector: '#requestedOn',
             newOrPresaleSelector: '#newOrPresale .active',
@@ -25,6 +26,7 @@ define(['flight/lib/component'], function(defineComponent) {
             event.preventDefault();
 
             var data = {
+                requestNo: this.select('requestNoSelector').text(),
                 requestedBy: this.select('requestedBySelector').val(),
                 requestedOn: this.select('requestedOnSelector').val(),
                 newOrPresale: $.trim(this.select('newOrPresaleSelector').text()),

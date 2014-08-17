@@ -49,8 +49,26 @@ exports.showExistingStaffingRequest = function(req, res) {
 };
 
 exports.saveStaffingRequest = function(req, res) {
-    var staffingRequest = new StaffingRequest(req.body);
-    staffingRequest.save();
+    var staffingRequest = req.body;
 
-    res.send(200);
+    function ok() {
+        res.send(200);
+    }
+
+    function save() {
+        var query = { requestNo: staffingRequest.requestNo };
+        var options = { upsert: true };
+
+        StaffingRequest.findOneAndUpdate(query, staffingRequest, options, ok);
+    }
+
+    if (!staffingRequest.requestNo) {
+        StaffingRequest.nextRequestNo(function(error, requestNo) {
+            staffingRequest.requestNo = requestNo;
+
+            save();
+        });
+    } else {
+        save();
+    }
 };

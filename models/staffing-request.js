@@ -24,4 +24,18 @@ var StaffingRequestSchema = new Schema({
     positionName: String
 });
 
+StaffingRequestSchema.statics.nextRequestNo = function(cb) {
+    this.findOne()
+        .sort('-requestNo')
+        .exec(function(error, staffingRequest) {
+            if (error) {
+                cb(error);
+            } else {
+                var nextRequestNo = staffingRequest === null ? 1 : staffingRequest.requestNo + 1;
+
+                cb(error, nextRequestNo);
+            }
+        });
+};
+
 mongoose.model('StaffingRequest', StaffingRequestSchema);
