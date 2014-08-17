@@ -28,10 +28,10 @@ module.exports = function(passport) {
     );
 
     router.get('/staffing-request', isLoggedIn, controllers.showNewStaffingRequest);
-
     router.get('/staffing-request/:requestNo', isLoggedIn, controllers.showExistingStaffingRequest);
 
-    router.post('/staffing-request', isLoggedIn, controllers.saveStaffingRequest)
+    router.post('/staffing-request', isLoggedIn, controllers.saveStaffingRequest);
+    router.post('/staffing-request/:requestNo', isLoggedIn, controllers.saveStaffingRequest)
 
     return router;
 };

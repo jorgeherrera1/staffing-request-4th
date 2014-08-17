@@ -7,7 +7,7 @@ var mongoose = require('mongoose'),
     moment = require('moment'),
     StaffingRequest = mongoose.model('StaffingRequest');
 
-var jsLib = '<script data-main="/js/main.js" src="js/lib.js"></script>';
+var jsLib = '<script data-main="/js/main.js" src="/js/lib.js"></script>';
 
 exports.getIndex = function(req, res) {
     res.redirect('/login');

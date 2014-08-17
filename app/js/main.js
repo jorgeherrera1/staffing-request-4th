@@ -1,7 +1,7 @@
 'use strict';
 
 requirejs.config({
-    baseUrl: 'js',
+    baseUrl: '/js',
     paths: {
         'component_ui': 'component/ui',
         'component_data': 'component/data'
