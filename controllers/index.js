@@ -46,7 +46,7 @@ exports.showExistingStaffingRequest = function(req, res) {
             partials: {
                 'page': 'staffing-request'
             },
-            staffingRequest: staffingRequest,
+            staffingRequest: staffingRequest.toObject(),
             js: jsLib
         });
     }
