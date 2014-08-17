@@ -4,6 +4,7 @@
  * Module dependencies
  */
 var mongoose = require('mongoose'),
+    moment = require('moment'),
     StaffingRequest = mongoose.model('StaffingRequest');
 
 exports.getIndex = function(req, res) {
@@ -25,6 +26,7 @@ exports.getStaffingRequest = function(req, res) {
         partials: {
             'page': 'staffing-request'
         },
+        requestedOn: moment().format('YYYY/MM/DD'),
         js: '<script data-main="js/main.js" src="js/lib.js"></script>'
     });
 };

@@ -16,13 +16,13 @@
                     <div class="row">
                         <div class="form-group col-md-4">
                             <label for="requestedBy">Requested By</label>
-                            <input id="requestedBy" type="text" class="form-control">
+                            <input id="requestedBy" type="text" class="form-control" autofocus>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="requestedOn">Requested On</label>
                             <div class="input-group">
-                                <input id="requestedOn" type="text" class="form-control" data-date-format="YYYY/MM/DD">
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                                <input id="requestedOn" type="text" class="form-control" data-date-format="YYYY/MM/DD" value="{{requestedOn}}">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                             </div>
                         </div>
                         <div class="form-group col-md-4">
@@ -42,7 +42,7 @@
                             <label for="dateNeeded">Date Needed</label>
                             <div class="input-group">
                                 <input id="dateNeeded" type="text" class="form-control" data-date-format="YYYY/MM/DD">
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                             </div>
                         </div>
                         <div class="form-group col-md-4">
