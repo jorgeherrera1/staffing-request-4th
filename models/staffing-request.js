@@ -24,17 +24,18 @@ var StaffingRequestSchema = new Schema({
     positionName: String
 });
 
+StaffingRequestSchema.statics.findByRequestNo = function(requestNo, cb) {
+    var query = { requestNo: requestNo };
+
+    this.findOne(query, cb);
+};
+
 StaffingRequestSchema.statics.nextRequestNo = function(cb) {
     this.findOne()
         .sort('-requestNo')
         .exec(function(error, staffingRequest) {
-            if (error) {
-                cb(error);
-            } else {
-                var nextRequestNo = staffingRequest === null ? 1 : staffingRequest.requestNo + 1;
-
-                cb(error, nextRequestNo);
-            }
+            var nextRequestNo = staffingRequest === null ? 1 : staffingRequest.requestNo + 1;
+            cb(error, nextRequestNo);
         });
 };
 

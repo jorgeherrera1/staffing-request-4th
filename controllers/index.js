@@ -36,16 +36,20 @@ exports.showNewStaffingRequest = function(req, res) {
 };
 
 exports.showExistingStaffingRequest = function(req, res) {
-    res.render('layout', {
-        title: 'Staffing Request',
-        partials: {
-            'page': 'staffing-request'
-        },
-        staffingRequest: {
-            requestedBy: 'Jorge Herrera'
-        },
-        js: jsLib
+    StaffingRequest.findByRequestNo(req.params.requestNo, function(error, staffingRequest) {
+        render(staffingRequest);
     });
+
+    function render(staffingRequest) {
+        res.render('layout', {
+            title: 'Staffing Request',
+            partials: {
+                'page': 'staffing-request'
+            },
+            staffingRequest: staffingRequest,
+            js: jsLib
+        });
+    }
 };
 
 exports.saveStaffingRequest = function(req, res) {
