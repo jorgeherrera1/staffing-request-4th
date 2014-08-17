@@ -17,7 +17,7 @@ gulp.task('clean', function() {
 
 gulp.task('less', function() {
     return gulp.src('./app/less/app.less')
-        .pipe(less({ cleancss: true }))
+        .pipe(less(/*{ cleancss: true }*/))
         .pipe(gulp.dest('./public/css/'))
         .pipe(livereload(server, { auto: false }));
 });
@@ -40,11 +40,18 @@ gulp.task('images', function() {
         .pipe(gulp.dest('./public/img'))
 });
 
+gulp.task('fonts', function() {
+    return gulp.src('./bower_components/bootstrap/fonts/**')
+        .pipe(gulp.dest('./public/fonts'));
+});
+
 gulp.task('lib', function() {
     return gulp.src([
         './bower_components/jquery/dist/jquery.js',
         './bower_components/bootstrap/dist/js/bootstrap.js',
         './bower_components/typeahead.js/dist/typeahead.bundle.js',
+        './bower_components/moment/moment.js',
+        './bower_components/eonasdan-bootstrap-datetimepicker/src/js/bootstrap-datetimepicker.js',
         './bower_components/requirejs/require.js'])
         .pipe(uglify())
         .pipe(concat('lib.js'))
@@ -57,7 +64,7 @@ gulp.task('lib-flight', function() {
         .pipe(gulp.dest('./public/js/flight/lib'));
 });
 
-gulp.task('build', ['less', 'js', 'images', 'lib', 'lib-flight']);
+gulp.task('build', ['less', 'js', 'images', 'fonts', 'lib', 'lib-flight']);
 
 gulp.task('watch', function() {
     server.listen(35729, function (err) {
