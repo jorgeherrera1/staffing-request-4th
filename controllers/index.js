@@ -7,11 +7,13 @@ var mongoose = require('mongoose'),
     moment = require('moment'),
     StaffingRequest = mongoose.model('StaffingRequest');
 
+var jsLib = '<script data-main="/js/main.js" src="js/lib.js"></script>';
+
 exports.getIndex = function(req, res) {
     res.redirect('/login');
 };
 
-exports.getLogin = function(req, res) {
+exports.showLogin = function(req, res) {
     res.render('layout', {
         title: 'Staffing Request',
         partials: {
@@ -20,18 +22,33 @@ exports.getLogin = function(req, res) {
     });
 };
 
-exports.getStaffingRequest = function(req, res) {
+exports.showNewStaffingRequest = function(req, res) {
     res.render('layout', {
         title: 'Staffing Request',
         partials: {
             'page': 'staffing-request'
         },
-        requestedOn: moment().format('YYYY/MM/DD'),
-        js: '<script data-main="js/main.js" src="js/lib.js"></script>'
+        staffingRequest: {
+            requestedOn: moment().format('YYYY/MM/DD')
+        },
+        js: jsLib
     });
 };
 
-exports.postStaffingRequest = function(req, res) {
+exports.showExistingStaffingRequest = function(req, res) {
+    res.render('layout', {
+        title: 'Staffing Request',
+        partials: {
+            'page': 'staffing-request'
+        },
+        staffingRequest: {
+            requestedBy: 'Jorge Herrera'
+        },
+        js: jsLib
+    });
+};
+
+exports.saveStaffingRequest = function(req, res) {
     var staffingRequest = new StaffingRequest(req.body);
     staffingRequest.save();
 

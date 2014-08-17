@@ -16,7 +16,7 @@ module.exports = function(passport) {
 
     router.get('/', controllers.getIndex);
 
-    router.get('/login', controllers.getLogin);
+    router.get('/login', controllers.showLogin);
 
     router.post('/login',
         passport.authenticate('local', {
@@ -27,9 +27,11 @@ module.exports = function(passport) {
         )
     );
 
-    router.get('/staffing-request', isLoggedIn, controllers.getStaffingRequest);
+    router.get('/staffing-request', isLoggedIn, controllers.showNewStaffingRequest);
 
-    router.post('/staffing-request', isLoggedIn, controllers.postStaffingRequest)
+    router.get('/staffing-request/:requestNo', isLoggedIn, controllers.showExistingStaffingRequest);
+
+    router.post('/staffing-request', isLoggedIn, controllers.saveStaffingRequest)
 
     return router;
 };
