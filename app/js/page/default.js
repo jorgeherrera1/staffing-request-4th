@@ -1,28 +1,27 @@
 'use strict';
 
-define(function(require) {
+define(
 
-    /**
-     * Module dependencies
-     */
-    var SubmitRequest = require('component_data/submit_request');
-    var StaffingRequestForm = require('component_ui/staffing_request_form');
-    var DatePicker = require('component_ui/date_picker');
+    [
+        'component_data/submit_request',
+        'component_ui/staffing_request_form',
+        'component_ui/date_picker',
+        'component_ui/multiple_choice',
+    ],
 
-    /**
-     * Module exports
-     */
+    function(
+        SubmitRequestData,
+        StaffingRequestFormUI,
+        DatePickerUI,
+        MultipleChoiceUI) {
 
     return initialize;
 
-    /**
-     * Module function
-     */
-
     function initialize() {
-        SubmitRequest.attachTo(document);
-        StaffingRequestForm.attachTo('form');
-        DatePicker.attachTo('[data-date-format]');
+        SubmitRequestData.attachTo(document);
+        StaffingRequestFormUI.attachTo('form');
+        DatePickerUI.attachTo('[data-date-format]');
+        MultipleChoiceUI.attachTo('.btn-group');
     }
 
 });

@@ -1,11 +1,7 @@
 'use strict';
 
-define(function(require) {
+define(['flight/lib/component'], function(defineComponent) {
 
-    // import dependencies
-    var defineComponent = require('flight/lib/component');
-
-    // export component constructor
     return defineComponent(staffingRequestForm);
 
     // component definition
