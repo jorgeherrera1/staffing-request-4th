@@ -22,7 +22,11 @@ var StaffingRequestSchema = new Schema({
         type: String,
         enum: ['New', 'Backfill']
     },
-    positionName: String
+    positionName: String,
+    travelRequired: {
+        type: String,
+        enum: ['Possible', 'Yes', 'No']
+    }
 });
 
 StaffingRequestSchema.statics.findByRequestNo = function(requestNo, cb) {

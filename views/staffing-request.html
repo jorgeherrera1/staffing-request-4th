@@ -17,7 +17,7 @@
                     <div class="row">
                         <div class="form-group col-md-4">
                             <label for="requestedBy">Requested By</label>
-                            <input id="requestedBy" type="text" class="form-control" autofocus value="{{requestedBy}}">
+                            <input id="requestedBy" type="text" class="form-control" autofocus autocomplete="off" value="{{requestedBy}}">
                         </div>
                         <div class="form-group col-md-4">
                             <label for="requestedOn">Requested On</label>
@@ -48,11 +48,11 @@
                         </div>
                         <div class="form-group col-md-4">
                             <label for="companyName">Company Name</label>
-                            <input id="companyName" type="text" class="form-control" value="{{companyName}}">
+                            <input id="companyName" type="text" class="form-control" autocomplete="off" value="{{companyName}}">
                         </div>
                         <div class="form-group col-md-4">
                             <label for="contactName">Contact Name</label>
-                            <input id="contactName" type="text" class="form-control" value="{{contactName}}">
+                            <input id="contactName" type="text" class="form-control" autocomplete="off" value="{{contactName}}">
                         </div>
                     </div>
                 </div>
@@ -65,18 +65,18 @@
                     <div class="row">
                         <div class="form-group col-md-4">
                             <label for="newOrBackfill">New or Backfill?</label>
-                            <div id="newOrBackfill" class="btn-group" data-toggle="buttons">
-                                <label class="btn btn-primary active">
-                                    <input type="radio" name="options" id="positionNew" checked>New
+                            <div id="newOrBackfill" class="btn-group" data-toggle="buttons" data-selected-value="{{newOrBackfill}}" >
+                                <label class="btn btn-primary">
+                                    <input type="radio" name="options">New
                                 </label>
                                 <label class="btn btn-primary">
-                                    <input type="radio" name="options" id="positionBackfill">Backfill
+                                    <input type="radio" name="options">Backfill
                                 </label>
                             </div>
                         </div>
                         <div class="form-group col-md-4">
                             <label for="positionName">Position</label>
-                            <input id="positionName" type="text" class="form-control" value="{{positionName}}">
+                            <input id="positionName" type="text" class="form-control" autocomplete="off" value="{{positionName}}">
                         </div>
                         <div class="form-group col-md-4">
                             <label for="minimumExperience">Minimum Experience</label>
@@ -86,7 +86,7 @@
                     <div class="row">
                         <div class="form-group col-md-4">
                             <label for="location">Location</label>
-                            <input id="location" type="text" class="form-control">
+                            <input id="location" type="text" autocomplete="off" class="form-control">
                         </div>
                         <div class="form-group col-md-4">
                             <label for="length">Length</label>
@@ -94,15 +94,15 @@
                         </div>
                         <div class="form-group col-md-4">
                             <label for="travelRequired">Travel Required?</label>
-                            <div id="travelRequired" class="btn-group" data-toggle="buttons">
-                                <label class="btn btn-primary active">
-                                    <input type="radio" name="options" id="travelPossible" checked>Possible
+                            <div id="travelRequired" class="btn-group" data-toggle="buttons" data-selected-value="{{travelRequired}}">
+                                <label class="btn btn-primary">
+                                    <input type="radio" name="options">Possible
                                 </label>
                                 <label class="btn btn-primary">
-                                    <input type="radio" name="options" id="travelYes">Yes
+                                    <input type="radio" name="options">Yes
                                 </label>
                                 <label class="btn btn-primary">
-                                    <input type="radio" name="options" id="travelNo">No
+                                    <input type="radio" name="options">No
                                 </label>
                             </div>
                         </div>
