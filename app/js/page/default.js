@@ -7,13 +7,15 @@ define(
         'component_ui/staffing_request_form',
         'component_ui/date_picker',
         'component_ui/multiple_choice',
+        'component_ui/suggest'
     ],
 
     function(
         SubmitRequestData,
         StaffingRequestFormUI,
         DatePickerUI,
-        MultipleChoiceUI) {
+        MultipleChoiceUI,
+        SuggestUI) {
 
     return initialize;
 
@@ -22,6 +24,10 @@ define(
         StaffingRequestFormUI.attachTo('form');
         DatePickerUI.attachTo('[data-date-format]');
         MultipleChoiceUI.attachTo('.btn-group');
+        SuggestUI.attachTo('#companyName', {
+            name: 'companyName',
+            fromData: '/suggest/clients.json'
+        });
     }
 
 });
