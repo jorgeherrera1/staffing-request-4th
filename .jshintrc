@@ -29,6 +29,7 @@
         "expect",
         "it",
         "requirejs",
-        "setupComponent"
+        "setupComponent",
+        "Bloodhound"
     ]
 }

@@ -44,6 +44,14 @@ StaffingRequestSchema.statics.nextRequestNo = function(cb) {
         });
 };
 
+StaffingRequestSchema.statics.lastRequestingCompanies = function(noOfCompanies, cb) {
+    this.find()
+        .limit(noOfCompanies)
+        .sort('-requestedOn')
+        .select('companyName')
+        .exec(cb);
+};
+
 if (!StaffingRequestSchema.options.toObject) {
     StaffingRequestSchema.options.toObject = {};
 }

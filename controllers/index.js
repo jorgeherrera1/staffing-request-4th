@@ -78,5 +78,7 @@ exports.saveStaffingRequest = function(req, res) {
 };
 
 exports.lastUsedClients = function(req, res) {
-    res.send(['4th Source', 'ESI', 'St. Jude', 'Brierley']);
+    StaffingRequest.lastRequestingCompanies(5, function(error, companies) {
+        res.send(companies);
+    });
 };

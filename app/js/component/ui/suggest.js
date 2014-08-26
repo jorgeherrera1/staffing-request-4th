@@ -21,7 +21,8 @@ define(['flight/lib/component'], function(defineComponent) {
                     url: this.attr.fromData,
                     filter: function(list) {
                         return $.map(list, function(value) { return { value: value}; });
-                    }
+                    },
+                    ttl: 1000
                 }
             });
             engine.initialize();
