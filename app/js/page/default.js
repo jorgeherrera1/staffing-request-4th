@@ -7,7 +7,8 @@ define(
         'component_ui/staffing_request_form',
         'component_ui/date_picker',
         'component_ui/multiple_choice',
-        'component_ui/suggest'
+        'component_ui/suggest',
+        'component_ui/tags'
     ],
 
     function(
@@ -15,7 +16,8 @@ define(
         StaffingRequestFormUI,
         DatePickerUI,
         MultipleChoiceUI,
-        SuggestUI) {
+        SuggestUI,
+        TagsUI) {
 
     return initialize;
 
@@ -28,6 +30,7 @@ define(
             name: 'companyName',
             fromData: '/suggest/clients.json'
         });
+        TagsUI.attachTo('#requiredSkills');
     }
 
 });
