@@ -3,10 +3,10 @@
 define(['flight/lib/component'], function(defineComponent) {
 
     // export component constructor
-    return defineComponent(suggest);
+    return defineComponent(tags);
 
     // component definition
-    function suggest() {
+    function tags() {
 
         this.defaultAttrs({
             toggleIndicator: false,
