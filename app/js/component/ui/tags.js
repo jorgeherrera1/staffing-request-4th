@@ -20,11 +20,14 @@ define(['flight/lib/component'], function(defineComponent) {
 
         this.after('initialize', function() {
             this.$node.tagsinput();
-            var tagsInput = this.$node.siblings('.bootstrap-tagsinput');
 
-            this.on(tagsInput, 'click', {
-                tagSelector: this.toggleColor
-            });
+            if (this.attr.toggleIndicator === true) {
+                var tagsInput = this.$node.siblings('.bootstrap-tagsinput');
+
+                this.on(tagsInput, 'click', {
+                    tagSelector: this.toggleColor
+                });
+            }
         });
     }
 

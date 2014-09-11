@@ -30,7 +30,10 @@ define(
             name: 'companyName',
             fromData: '/suggest/clients.json'
         });
-        TagsUI.attachTo('#requiredSkills');
+        TagsUI.attachTo('#location');
+        TagsUI.attachTo('#requiredSkills', {
+            toggleIndicator: true
+        });
     }
 
 });
