@@ -27,8 +27,7 @@ define(
         DatePickerUI.attachTo('[data-date-format]');
         MultipleChoiceUI.attachTo('.btn-group');
         SuggestUI.attachTo('#companyName', {
-            name: 'companyName',
-            fromData: '/suggest/clients.json'
+            name: 'companyName'
         });
         TagsUI.attachTo('#location');
         TagsUI.attachTo('#requiredSkills', {

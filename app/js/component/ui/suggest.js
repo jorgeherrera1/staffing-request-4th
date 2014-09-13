@@ -9,7 +9,7 @@ define(['flight/lib/component'], function(defineComponent) {
     function suggest() {
         this.defaultAttrs({
             name: '',
-            fromData: '',
+            fromData: '/suggest/lastUsedValues.json',
             keepTime: 5 // TODO: change default keep time
         });
 
@@ -21,7 +21,7 @@ define(['flight/lib/component'], function(defineComponent) {
                 queryTokenizer: Bloodhound.tokenizers.whitespace,
                 limit: 10,
                 prefetch: {
-                    url: that.attr.fromData,
+                    url: that.attr.fromData + '?field=' + that.attr.name,
                     filter: function(list) {
                         var datums = $.map(list, function(obj) {
                             return { value: obj[that.attr.name] };

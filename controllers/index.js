@@ -78,8 +78,8 @@ exports.saveStaffingRequest = function(req, res) {
     }
 };
 
-exports.lastUsedCompanies = function(req, res) {
-    StaffingRequest.lastUsedCompanies(10, function(error, companies) {
-        res.send(_.uniq(companies, 'companyName'));
+exports.lastUsedValues = function(req, res) {
+    StaffingRequest.lastUsedValues(req.query.field, 10, function(error, companies) {
+        res.send(_.uniq(companies, req.query.field));
     });
 };
