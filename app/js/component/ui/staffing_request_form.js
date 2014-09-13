@@ -42,12 +42,8 @@ define(['flight/lib/component'], function(defineComponent) {
             this.trigger('uiRequestSubmitted', data);
         };
 
-        this.enableSubmit = function() {
-            this.select('submitSelector').prop('disabled', false);
-        };
-
-        this.disableSubmit = function() {
-            this.select('submitSelector').prop('disabled', true);
+        this.redirectToStaffingRequest = function(event, staffingRequest) {
+            window.location.pathname = '/staffing-request/' + staffingRequest.requestNo;
         };
 
         this.after('initialize', function() {
@@ -56,6 +52,8 @@ define(['flight/lib/component'], function(defineComponent) {
             this.on('click', {
                 'submitSelector': this.submitRequest
             });
+
+            this.on(document, 'dataRequestSaved', this.redirectToStaffingRequest);
         });
     }
 

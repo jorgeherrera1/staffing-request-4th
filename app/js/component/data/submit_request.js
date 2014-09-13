@@ -12,9 +12,11 @@ define(['flight/lib/component'], function(defineComponent) {
         });
 
         this.submitRequest = function(event, data) {
-            console.log(data);
+            var that = this;
 
-            $.post('/staffing-request', data);
+            $.post('/staffing-request', data, function(staffingRequest) {
+                that.trigger('dataRequestSaved', staffingRequest);
+            });
         };
 
         this.after('initialize', function() {

@@ -56,15 +56,15 @@ exports.showExistingStaffingRequest = function(req, res) {
 exports.saveStaffingRequest = function(req, res) {
     var staffingRequest = req.body;
 
-    function ok() {
-        res.send(200);
+    function callback(error, staffingRequest) {
+        res.send(staffingRequest);
     }
 
     function save() {
         var query = { requestNo: staffingRequest.requestNo };
         var options = { upsert: true };
 
-        StaffingRequest.findOneAndUpdate(query, staffingRequest, options, ok);
+        StaffingRequest.findOneAndUpdate(query, staffingRequest, options, callback);
     }
 
     if (!staffingRequest.requestNo) {
