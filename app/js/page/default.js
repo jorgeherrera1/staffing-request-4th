@@ -22,6 +22,9 @@ define(
     return initialize;
 
     function initialize() {
+        SuggestUI.attachTo('#requestedBy', {
+            name: 'requestedBy'
+        });
         SubmitRequestData.attachTo(document);
         StaffingRequestFormUI.attachTo('form');
         DatePickerUI.attachTo('[data-date-format]');
