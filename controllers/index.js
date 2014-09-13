@@ -5,6 +5,7 @@
  */
 var mongoose = require('mongoose'),
     moment = require('moment'),
+    _ = require('lodash'),
     StaffingRequest = mongoose.model('StaffingRequest');
 
 var jsLib = '<script data-main="/js/main.js" src="/js/lib.js"></script>';
@@ -77,8 +78,8 @@ exports.saveStaffingRequest = function(req, res) {
     }
 };
 
-exports.lastUsedClients = function(req, res) {
-    StaffingRequest.lastRequestingCompanies(5, function(error, companies) {
-        res.send(companies);
+exports.lastUsedCompanies = function(req, res) {
+    StaffingRequest.lastUsedCompanies(10, function(error, companies) {
+        res.send(_.uniq(companies, 'companyName'));
     });
 };

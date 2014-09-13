@@ -33,7 +33,7 @@ module.exports = function(passport) {
     router.post('/staffing-request', isLoggedIn, controllers.saveStaffingRequest);
     router.post('/staffing-request/:requestNo', isLoggedIn, controllers.saveStaffingRequest);
 
-    router.get('/suggest/clients.json', isLoggedIn, controllers.lastUsedClients);
+    router.get('/suggest/clients.json', isLoggedIn, controllers.lastUsedCompanies);
 
     return router;
 };

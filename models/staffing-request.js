@@ -45,11 +45,11 @@ StaffingRequestSchema.statics.nextRequestNo = function(cb) {
         });
 };
 
-StaffingRequestSchema.statics.lastRequestingCompanies = function(noOfCompanies, cb) {
+StaffingRequestSchema.statics.lastUsedCompanies = function(noOfCompanies, cb) {
     this.find()
         .limit(noOfCompanies)
         .sort('-requestedOn')
-        .select('companyName')
+        .select('-_id companyName')
         .exec(cb);
 };
 

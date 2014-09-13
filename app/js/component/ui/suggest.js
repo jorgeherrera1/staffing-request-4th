@@ -9,20 +9,27 @@ define(['flight/lib/component'], function(defineComponent) {
     function suggest() {
         this.defaultAttrs({
             name: '',
-            fromData: ''
+            fromData: '',
+            keepTime: 5 // TODO: change default keep time
         });
 
         this.after('initialize', function() {
+            var that = this;
+
             var engine = new Bloodhound({
                 datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
                 queryTokenizer: Bloodhound.tokenizers.whitespace,
                 limit: 10,
                 prefetch: {
-                    url: this.attr.fromData,
+                    url: that.attr.fromData,
                     filter: function(list) {
-                        return $.map(list, function(value) { return { value: value}; });
+                        var datums = $.map(list, function(obj) {
+                            return { value: obj[that.attr.name] };
+                        });
+
+                        return datums;
                     },
-                    ttl: 1000
+                    ttl: that.attr.keepTime * 1000
                 }
             });
             engine.initialize();
@@ -33,7 +40,7 @@ define(['flight/lib/component'], function(defineComponent) {
                     hint: true
                 },
                 {
-                    name: this.attr.name,
+                    name: that.attr.name,
                     source: engine.ttAdapter()
                 });
         });
