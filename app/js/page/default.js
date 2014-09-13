@@ -22,16 +22,11 @@ define(
     return initialize;
 
     function initialize() {
-        SuggestUI.attachTo('#requestedBy', {
-            name: 'requestedBy'
-        });
+        SuggestUI.attachTo('[data-suggest]');
         SubmitRequestData.attachTo(document);
         StaffingRequestFormUI.attachTo('form');
         DatePickerUI.attachTo('[data-date-format]');
         MultipleChoiceUI.attachTo('.btn-group');
-        SuggestUI.attachTo('#companyName', {
-            name: 'companyName'
-        });
         TagsUI.attachTo('#location');
         TagsUI.attachTo('#requiredSkills', {
             toggleIndicator: true
