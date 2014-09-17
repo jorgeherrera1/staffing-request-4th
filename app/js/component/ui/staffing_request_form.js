@@ -18,6 +18,7 @@ define(['flight/lib/component'], function(defineComponent) {
             contactNameSelector: '#contactName',
             newOrBackfillSelector: '#newOrBackfill .active',
             positionNameSelector: '#positionName',
+            minimumExperienceSelector: '#minimumExperience',
             locationSelector: '#location',
             travelRequiredSelector: '#travelRequired .active',
             submitSelector: '#submitRequest'
@@ -35,6 +36,7 @@ define(['flight/lib/component'], function(defineComponent) {
                 contactName: this.select('contactNameSelector').val(),
                 newOrBackfill: $.trim(this.select('newOrBackfillSelector').text()),
                 positionName: this.select('positionNameSelector').val(),
+                minimumExperience: this.select('minimumExperienceSelector').val(),
                 location: this.select('locationSelector').data('tags'),
                 travelRequired: $.trim(this.select('travelRequiredSelector').text())
             };
