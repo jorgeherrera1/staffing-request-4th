@@ -8,7 +8,8 @@ define(
         'component_ui/date_picker',
         'component_ui/multiple_choice',
         'component_ui/suggest',
-        'component_ui/tags'
+        'component_ui/tags',
+        'component_ui/spinner'
     ],
 
     function(
@@ -17,7 +18,8 @@ define(
         DatePickerUI,
         MultipleChoiceUI,
         SuggestUI,
-        TagsUI) {
+        TagsUI,
+        SpinnerUI) {
 
     return initialize;
 
@@ -31,6 +33,7 @@ define(
         TagsUI.attachTo('#requiredSkills', {
             toggleIndicator: true
         });
+        SpinnerUI.attachTo('#minimumExperience');
     }
 
 });

@@ -47,8 +47,6 @@ define(['flight/lib/component'], function(defineComponent) {
         };
 
         this.after('initialize', function() {
-            console.log('Initializing Staffing Request Form');
-
             this.on('click', {
                 'submitSelector': this.submitRequest
             });
