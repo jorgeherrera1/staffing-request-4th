@@ -30,7 +30,8 @@ exports.showNewStaffingRequest = function(req, res) {
             'page': 'staffing-request'
         },
         staffingRequest: {
-            requestedOn: moment().format('YYYY/MM/DD')
+            requestedOn: moment().format('YYYY/MM/DD'),
+            minimumExperience: 1
         },
         js: jsLib
     });
