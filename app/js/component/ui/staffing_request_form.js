@@ -27,6 +27,8 @@ define(['flight/lib/component'], function(defineComponent) {
         this.submitRequest = function(event) {
             event.preventDefault();
 
+            $(event.target).button('loading');
+
             var data = {
                 requestNo: this.select('requestNoSelector').text(),
                 requestedBy: this.select('requestedBySelector').val(),
