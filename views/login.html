@@ -1,4 +1,9 @@
 <div class="signin-box panel">
+    {{#message}}
+    <div class="alert alert-warning fade in" role="alert">
+        <strong>{{message}}</strong>
+    </div>
+    {{/message}}
     <h2>Log In</h2>
     <form role="form" method="post" action="/login">
         <div class="form-group">

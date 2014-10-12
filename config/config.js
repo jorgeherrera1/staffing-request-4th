@@ -5,5 +5,6 @@ module.exports = {
     env: process.env.NODE_ENV || 'development',
     db: process.env.MONGOHQ_URL || 'mongodb://jherrera:jherrera@paulo.mongohq.com:10040/jherrera',
     mailHost: 'pop.4thsource.com',
-    mailPort: 110
+    mailPort: 110,
+    secret: 'ThisIsACoolStaffingRequestApp!'
 };

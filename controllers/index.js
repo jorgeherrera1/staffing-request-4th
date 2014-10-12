@@ -19,7 +19,8 @@ exports.showLogin = function(req, res) {
         title: 'Staffing Request',
         partials: {
             'page': 'login'
-        }
+        },
+        message: req.flash('error')
     });
 };
 

@@ -7,6 +7,7 @@ var express = require('express'),
     logger = require('morgan'),
     bodyParser = require('body-parser'),
     expressValidator = require('express-validator'),
+    cookieParser = require('cookie-parser'),
     session = require('express-session'),
     passport = require('passport'),
     flash = require('connect-flash');
@@ -35,12 +36,14 @@ module.exports = function(app) {
     // request validator
     app.use(expressValidator());
 
+    app.use(cookieParser());
+
     // session support
     app.use(session({
-        name: 'staffing-request-4th-sid',
-        saveUninitialized: true,
-        resave: true,
-        secret: 'ThisIsACoolStaffingRequestApp!'
+        name: 'staffing-request-4th-sid', // cookie name
+        saveUninitialized: true, // forces a session that is "uninitialized" to be saved to the store
+        resave: true, // forces session to be saved even when unmodified
+        secret: app.get('config').secret // session cookie is signed with this secret to prevent tampering
     }));
 
     // passport support
