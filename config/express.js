@@ -44,7 +44,7 @@ module.exports = function(app) {
     }));
 
     // passport support
-    require(__dirname + '/passport')(passport);
+    require(__dirname + '/passport')(app, passport);
     app.use(passport.initialize());
     app.use(passport.session());
     app.use(flash());

@@ -1,13 +1,16 @@
 'use strict';
 
-var LocalStrategy = require('passport-local').Strategy;
+var LocalStrategy = require('passport-local').Strategy,
+    POP3Client = require("poplib");
 
-module.exports = function(passport) {
+module.exports = function(app, passport) {
 
-    var parameters = {
-        usernameField: 'email',
-        passwordField: 'password'
-    };
+    var mailHost = app.get('config').mailHost,
+        mailPort = app.get('config').mailPort,
+        parameters = {
+            usernameField: 'email',
+            passwordField: 'password'
+        };
 
     passport.serializeUser(function(user, done) {
         done(null, user);
@@ -19,8 +22,43 @@ module.exports = function(passport) {
 
     passport.use(new LocalStrategy(parameters,
         function(email, password, done) {
-            return done(null, {
-                email: email
+
+            var client = new POP3Client(mailPort, mailHost, {
+                tlserrs: false,
+                enabletls: false,
+                debug: false
+            });
+
+            client.on('error', function(err) {
+                console.log('Unable to connect to Server: ' + err);
+
+                return done(null, false, {
+                    message: 'Unable to connect to server'
+                });
+            });
+
+            client.on('connect', function() {
+                console.log('Logging in: ' + email);
+
+                client.login(email, password);
+            });
+
+            client.on('login', function(status, data) {
+                if (status) {
+                    console.log('Logged in: ' + email);
+
+                    client.quit();
+                    return done(null, {
+                        email: email
+                    });
+                } else {
+                    console.log('Invalid username or password: ' + email);
+
+                    client.quit();
+                    return done(null, false, {
+                        message: 'Invalid username or password'
+                    });
+                }
             });
         }
     ));
