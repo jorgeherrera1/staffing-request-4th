@@ -36,7 +36,7 @@ exports.rememberMe = function(req, res, next) {
             return next(err);
         }
 
-        var cookieDuration = moment.duration(2, 'minutes').asMilliseconds();
+        var cookieDuration = moment.duration(10, 'minutes').asMilliseconds();
         res.cookie('staffing_request_remember_me', token, {
                 path: '/',
                 httpOnly: true,

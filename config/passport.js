@@ -2,7 +2,8 @@
 
 var LocalStrategy = require('passport-local').Strategy,
     RememberMeStrategy = require('passport-remember-me').Strategy,
-    POP3Client = require("poplib");
+    POP3Client = require("poplib"),
+    utils = require(process.cwd() + '/utils');
 
 module.exports = function(app, passport) {
 
@@ -63,5 +64,7 @@ module.exports = function(app, passport) {
             });
         }
     ));
+
+    passport.use(new RememberMeStrategy({ key: 'staffing_request_remember_me' }, utils.verifyToken, utils.issueToken));
 
 };

@@ -50,6 +50,7 @@ module.exports = function(app) {
     require(__dirname + '/passport')(app, passport);
     app.use(passport.initialize());
     app.use(passport.session());
+    app.use(passport.authenticate('remember-me'));
     app.use(flash());
 
     app.use('/', require(process.cwd() + '/routes')(passport));
