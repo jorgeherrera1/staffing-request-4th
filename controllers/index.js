@@ -6,7 +6,8 @@
 var mongoose = require('mongoose'),
     moment = require('moment'),
     _ = require('lodash'),
-    StaffingRequest = mongoose.model('StaffingRequest');
+    StaffingRequest = mongoose.model('StaffingRequest'),
+    utils = require(process.cwd() + '/utils');
 
 var jsLib = '<script data-main="/js/main.js" src="/js/lib.js"></script>';
 
@@ -21,6 +22,28 @@ exports.showLogin = function(req, res) {
             'page': 'login'
         },
         message: req.flash('error')
+    });
+};
+
+exports.rememberMe = function(req, res, next) {
+    // Issue a remember me cookie only if the option was checked
+    if (!req.body.remember_me) {
+        return next();
+    }
+
+    utils.issueToken(req.user, function(err, token) {
+        if (err) {
+            return next(err);
+        }
+
+        var cookieDuration = moment.duration(2, 'minutes').asMilliseconds();
+        res.cookie('staffing_request_remember_me', token, {
+                path: '/',
+                httpOnly: true,
+                maxAge: cookieDuration
+            }
+        );
+        return next();
     });
 };
 

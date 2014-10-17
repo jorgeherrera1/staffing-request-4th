@@ -1,6 +1,7 @@
 'use strict';
 
 var LocalStrategy = require('passport-local').Strategy,
+    RememberMeStrategy = require('passport-remember-me').Strategy,
     POP3Client = require("poplib");
 
 module.exports = function(app, passport) {
