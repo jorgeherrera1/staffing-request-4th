@@ -25,43 +25,21 @@ module.exports = function(app, passport) {
     passport.use(new LocalStrategy(parameters,
         function(email, password, done) {
 
-            var client = new POP3Client(mailPort, mailHost, {
-                tlserrs: false,
-                enabletls: false,
-                debug: false
-            });
+            var emailSender = utils.Email(mailHost, mailPort);
 
-            client.on('error', function(err) {
-                console.log('Unable to connect to Server: ' + err);
-
-                return done(null, false, {
-                    message: 'Unable to connect to server'
+            function successCallback() {
+                return done(null, {
+                    email: email
                 });
-            });
+            }
 
-            client.on('connect', function() {
-                console.log('Logging in: ' + email);
+            function errorCallback() {
+                return done(null, false, {
+                    message: 'Invalid username or password'
+                });
+            }
 
-                client.login(email, password);
-            });
-
-            client.on('login', function(status, data) {
-                if (status) {
-                    console.log('Logged in: ' + email);
-
-                    client.quit();
-                    return done(null, {
-                        email: email
-                    });
-                } else {
-                    console.log('Invalid username or password: ' + email);
-
-                    client.quit();
-                    return done(null, false, {
-                        message: 'Invalid username or password'
-                    });
-                }
-            });
+            emailSender.authenticate(email, password, successCallback, errorCallback);
         }
     ));
 
