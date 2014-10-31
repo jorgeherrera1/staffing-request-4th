@@ -2,7 +2,9 @@
 
 var util = require('util'),
     random = require('node-random'),
-    POP3Client = require('poplib');
+    POP3Client = require('poplib'),
+    mongoose = require('mongoose'),
+    RememberMe = mongoose.model('RememberMe');
 
 exports.isLoggedIn = function (req, res, next) {
     if (req.isAuthenticated()) {
@@ -13,12 +15,25 @@ exports.isLoggedIn = function (req, res, next) {
 };
 
 exports.issueToken = function(user, done) {
-    random.strings({ number: 8, len: 8 }, function(err, data) {
-        var randomStr = data.join('');
-        var token = util.format('%s|%s', randomStr, user.email);
-        var encodedToken = new Buffer(token).toString('base64');
+    var randomOptions = {
+        number: 8,
+        minimum: 1000,
+        maximum: 9999
+    };
 
-        return done(null, encodedToken);
+    random.integers(randomOptions, function(err, data) {
+        var rememberMe = new RememberMe({
+            email: user.email,
+            series: data.slice(0, 4).join(''),
+            token: data.slice(4, 8).join('')
+        });
+
+        rememberMe.save();
+
+        var loginCookie = util.format('%d|%d|%s', rememberMe.series, rememberMe.token, rememberMe.email);
+        var encodedLoginCookie = new Buffer(loginCookie).toString('base64');
+
+        return done(null, encodedLoginCookie);
     });
 };
 
