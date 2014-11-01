@@ -53,7 +53,10 @@ exports.showNewStaffingRequest = function(req, res) {
         partials: {
             'page': 'staffing-request'
         },
-        staffingRequest: {
+        user: {
+            email: req.user.email
+        }
+        ,staffingRequest: {
             requestedBy: req.user.email,
             requestedOn: moment().format('YYYY/MM/DD'),
             minimumExperience: 1
@@ -73,7 +76,10 @@ exports.showExistingStaffingRequest = function(req, res) {
             partials: {
                 'page': 'staffing-request'
             },
-            staffingRequest: staffingRequest.toObject(),
+            user: {
+                email: req.user.email
+            }
+            ,staffingRequest: staffingRequest.toObject(),
             js: jsLib
         });
     }
