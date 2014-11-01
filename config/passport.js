@@ -43,6 +43,8 @@ module.exports = function(app, passport) {
         }
     ));
 
-    passport.use(new RememberMeStrategy({ key: 'staffing_request_remember_me' }, utils.verifyToken, utils.issueToken));
+    passport.use(new RememberMeStrategy({
+        key: app.get('config').rememberMeCookieName
+    }, utils.verifyToken, utils.issueToken));
 
 };
