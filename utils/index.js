@@ -28,6 +28,7 @@ exports.issueToken = function(user, done) {
             token: data.slice(4, 8).join('')
         });
 
+        console.log('Saving remember-me cookie: ' + rememberMe);
         rememberMe.save();
 
         var loginCookie = util.format('%d|%d|%s', rememberMe.series, rememberMe.token, rememberMe.email);
@@ -37,11 +38,25 @@ exports.issueToken = function(user, done) {
     });
 };
 
-exports.verifyToken = function(token, done) {
-    var email = new Buffer(token, 'base64').toString('ascii');
-    console.log('Verified user ' + email + ' with token ' + token);
+exports.verifyToken = function(encodedLoginCookie, done) {
+    var loginCookie = new Buffer(encodedLoginCookie, 'base64').toString('ascii'),
+        loginCookieParts = loginCookie.split('|');
 
-    return done(null, { email: email });
+    RememberMe.findOneAndRemove({
+        series: loginCookieParts[0],
+        token: loginCookieParts[1],
+        email: loginCookieParts[2]
+    }, function(err, result) {
+        if (!result) {
+            console.log('Invalid cookie: ' + loginCookie);
+
+            return done(null, false, { message: 'Invalid cookie' });
+        } else {
+            console.log('Cookie valid for user: ' + result.email);
+
+            return done(null, { email: result.email });
+        }
+    });
 };
 
 exports.Email = function(host, port) {
