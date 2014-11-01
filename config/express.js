@@ -9,7 +9,6 @@ var express = require('express'),
     expressValidator = require('express-validator'),
     cookieParser = require('cookie-parser'),
     session = require('express-session'),
-    MongoStore = require('connect-mongo')(session),
     passport = require('passport'),
     flash = require('connect-flash');
 
@@ -41,16 +40,10 @@ module.exports = function(app) {
 
     // session support
     app.use(session({
-        name: 'staffing-request-4th-sid', // cookie name
+        name: 'staffing_request_4th_sid', // cookie name
         saveUninitialized: true, // forces a session that is "uninitialized" to be saved to the store
         resave: true, // forces session to be saved even when unmodified
-        secret: app.get('config').secret, // session cookie is signed with this secret to prevent tampering
-        store: new MongoStore({
-            collection: 'StaffingRequestSession',
-            url : app.get('config').db,
-            stringify: false,
-            auto_reconnect: true
-        })
+        secret: app.get('config').secret // session cookie is signed with this secret to prevent tampering
     }));
 
     // passport support
