@@ -40,7 +40,7 @@ module.exports = function(app) {
 
     // session support
     app.use(session({
-        name: 'staffing_request_4th_sid', // cookie name
+        name: app.get('config').sessionCookieName, // cookie name
         saveUninitialized: true, // forces a session that is "uninitialized" to be saved to the store
         resave: true, // forces session to be saved even when unmodified
         secret: app.get('config').secret // session cookie is signed with this secret to prevent tampering
