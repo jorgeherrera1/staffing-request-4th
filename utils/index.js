@@ -22,23 +22,15 @@ function randomNumber() {
 }
 
 exports.issueToken = function(user, done) {
-    var rememberMe = new RememberMe({
-        email: user.email,
-        series: randomNumber(),
-        token: randomNumber()
-    });
+    RememberMe.issueToken(user.email, successCb, failCb);
 
-    console.log('Saving remember-me cookie: ' + rememberMe);
-    rememberMe.save(function(err) {
-        if (err) {
-            return done(null, false, { message: 'Could not save cookie' });
-        }
+    function successCb(cookie) {
+        return done(null, cookie);
+    }
 
-        var loginCookie = util.format('%d|%d|%s', rememberMe.series, rememberMe.token, rememberMe.email);
-        var encodedLoginCookie = new Buffer(loginCookie).toString('base64');
-
-        return done(null, encodedLoginCookie);
-    });
+    function failCb() {
+        return done(null, false, { message: 'Could not save cookie' });
+    }
 };
 
 exports.verifyToken = function(encodedLoginCookie, done) {
