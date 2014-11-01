@@ -54,6 +54,7 @@ exports.showNewStaffingRequest = function(req, res) {
             'page': 'staffing-request'
         },
         staffingRequest: {
+            requestedBy: req.user.email,
             requestedOn: moment().format('YYYY/MM/DD'),
             minimumExperience: 1
         },
