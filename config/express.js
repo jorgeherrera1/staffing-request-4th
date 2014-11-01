@@ -48,7 +48,8 @@ module.exports = function(app) {
         store: new MongoStore({
             collection: 'StaffingRequestSession',
             url : app.get('config').db,
-            stringify: false
+            stringify: false,
+            auto_reconnect: true
         })
     }));
 
