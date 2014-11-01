@@ -1,7 +1,7 @@
 'use strict';
 
 var util = require('util'),
-    random = require('node-random'),
+    _ = require('lodash'),
     POP3Client = require('poplib'),
     mongoose = require('mongoose'),
     RememberMe = mongoose.model('RememberMe');
@@ -14,22 +14,25 @@ exports.isLoggedIn = function (req, res, next) {
     res.redirect('/login');
 };
 
+function randomNumber() {
+    var min = 1000000000000000,
+        max = 9999999999999999;
+
+    return _.random(min, max);
+}
+
 exports.issueToken = function(user, done) {
-    var randomOptions = {
-        number: 8,
-        minimum: 1000,
-        maximum: 9999
-    };
+    var rememberMe = new RememberMe({
+        email: user.email,
+        series: randomNumber(),
+        token: randomNumber()
+    });
 
-    random.integers(randomOptions, function(err, data) {
-        var rememberMe = new RememberMe({
-            email: user.email,
-            series: data.slice(0, 4).join(''),
-            token: data.slice(4, 8).join('')
-        });
-
-        console.log('Saving remember-me cookie: ' + rememberMe);
-        rememberMe.save();
+    console.log('Saving remember-me cookie: ' + rememberMe);
+    rememberMe.save(function(err) {
+        if (err) {
+            return done(null, false, { message: 'Could not save cookie' });
+        }
 
         var loginCookie = util.format('%d|%d|%s', rememberMe.series, rememberMe.token, rememberMe.email);
         var encodedLoginCookie = new Buffer(loginCookie).toString('base64');
