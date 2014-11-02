@@ -115,3 +115,10 @@ exports.lastUsedValues = function(req, res) {
         res.send(_.uniq(companies, req.query.field));
     });
 };
+
+exports.logout = function(req, res) {
+    // clear the remember me cookie when logging out
+    res.clearCookie('staffing_request_remember_me');
+    req.logout();
+    res.redirect('/login');
+};
