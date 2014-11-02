@@ -7,6 +7,7 @@ var mongoose = require('mongoose'),
     moment = require('moment'),
     _ = require('lodash'),
     StaffingRequest = mongoose.model('StaffingRequest'),
+    RememberMe = mongoose.model('RememberMe'),
     utils = require(process.cwd() + '/utils');
 
 var jsLib = '<script data-main="/js/main.js" src="/js/lib.js"></script>';
@@ -117,8 +118,14 @@ exports.lastUsedValues = function(req, res) {
 };
 
 exports.logout = function(req, res) {
-    // clear the remember me cookie when logging out
-    res.clearCookie('staffing_request_remember_me');
-    req.logout();
-    res.redirect('/login');
+    var encodedLoginCookie = _.result(req.cookies, 'staffing_request_remember_me');
+
+    RememberMe.findAndRemoveToken(encodedLoginCookie, cb, cb, cb);
+
+    function cb() {
+        // clear the remember me cookie when logging out
+        res.clearCookie('staffing_request_remember_me');
+        req.logout();
+        return res.redirect('/login');
+    }
 };
