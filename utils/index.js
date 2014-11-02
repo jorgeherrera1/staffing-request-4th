@@ -1,7 +1,7 @@
 'use strict';
 
 var util = require('util'),
-    random = require('node-random'),
+    _ = require('lodash'),
     POP3Client = require('poplib'),
     mongoose = require('mongoose'),
     RememberMe = mongoose.model('RememberMe');
@@ -15,48 +15,31 @@ exports.isLoggedIn = function (req, res, next) {
 };
 
 exports.issueToken = function(user, done) {
-    var randomOptions = {
-        number: 8,
-        minimum: 1000,
-        maximum: 9999
-    };
+    RememberMe.issueToken(user.email, successCb, failCb);
 
-    random.integers(randomOptions, function(err, data) {
-        var rememberMe = new RememberMe({
-            email: user.email,
-            series: data.slice(0, 4).join(''),
-            token: data.slice(4, 8).join('')
-        });
+    function successCb(cookie) {
+        return done(null, cookie);
+    }
 
-        console.log('Saving remember-me cookie: ' + rememberMe);
-        rememberMe.save();
-
-        var loginCookie = util.format('%d|%d|%s', rememberMe.series, rememberMe.token, rememberMe.email);
-        var encodedLoginCookie = new Buffer(loginCookie).toString('base64');
-
-        return done(null, encodedLoginCookie);
-    });
+    function failCb() {
+        return done(null, false, { message: 'Could not save cookie' });
+    }
 };
 
 exports.verifyToken = function(encodedLoginCookie, done) {
-    var loginCookie = new Buffer(encodedLoginCookie, 'base64').toString('ascii'),
-        loginCookieParts = loginCookie.split('|');
+    RememberMe.findAndRemoveToken(encodedLoginCookie, notFoundCb, successCb, failCb);
 
-    RememberMe.findOneAndRemove({
-        series: loginCookieParts[0],
-        token: loginCookieParts[1],
-        email: loginCookieParts[2]
-    }, function(err, result) {
-        if (!result) {
-            console.log('Invalid cookie: ' + loginCookie);
+    function notFoundCb() {
+        return done(null, false, { message: 'Invalid cookie' });
+    }
 
-            return done(null, false, { message: 'Invalid cookie' });
-        } else {
-            console.log('Cookie valid for user: ' + result.email);
+    function successCb(email) {
+        return done(null, { email: email });
+    }
 
-            return done(null, { email: result.email });
-        }
-    });
+    function failCb() {
+        return done(null, false, { message: 'Could not find cookie' });
+    }
 };
 
 exports.Email = function(host, port) {

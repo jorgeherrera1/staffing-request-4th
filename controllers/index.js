@@ -7,6 +7,7 @@ var mongoose = require('mongoose'),
     moment = require('moment'),
     _ = require('lodash'),
     StaffingRequest = mongoose.model('StaffingRequest'),
+    RememberMe = mongoose.model('RememberMe'),
     utils = require(process.cwd() + '/utils');
 
 var jsLib = '<script data-main="/js/main.js" src="/js/lib.js"></script>';
@@ -53,7 +54,11 @@ exports.showNewStaffingRequest = function(req, res) {
         partials: {
             'page': 'staffing-request'
         },
-        staffingRequest: {
+        user: {
+            email: req.user.email
+        }
+        ,staffingRequest: {
+            requestedBy: req.user.email,
             requestedOn: moment().format('YYYY/MM/DD'),
             minimumExperience: 1
         },
@@ -72,7 +77,10 @@ exports.showExistingStaffingRequest = function(req, res) {
             partials: {
                 'page': 'staffing-request'
             },
-            staffingRequest: staffingRequest.toObject(),
+            user: {
+                email: req.user.email
+            }
+            ,staffingRequest: staffingRequest.toObject(),
             js: jsLib
         });
     }
@@ -107,4 +115,17 @@ exports.lastUsedValues = function(req, res) {
     StaffingRequest.lastUsedValues(req.query.field, 10, function(error, companies) {
         res.send(_.uniq(companies, req.query.field));
     });
+};
+
+exports.logout = function(req, res) {
+    var encodedLoginCookie = _.result(req.cookies, 'staffing_request_remember_me');
+
+    RememberMe.findAndRemoveToken(encodedLoginCookie, cb, cb, cb);
+
+    function cb() {
+        // clear the remember me cookie when logging out
+        res.clearCookie('staffing_request_remember_me');
+        req.logout();
+        return res.redirect('/login');
+    }
 };

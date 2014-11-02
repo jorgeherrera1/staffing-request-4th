@@ -24,6 +24,8 @@ module.exports = function(passport) {
         }
     );
 
+    router.get('/logout', controllers.logout);
+
     router.get('/staffing-request', utils.isLoggedIn, controllers.showNewStaffingRequest);
     router.get('/staffing-request/:requestNo', utils.isLoggedIn, controllers.showExistingStaffingRequest);
 
