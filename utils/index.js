@@ -14,13 +14,6 @@ exports.isLoggedIn = function (req, res, next) {
     res.redirect('/login');
 };
 
-function randomNumber() {
-    var min = 1000000000000000,
-        max = 9999999999999999;
-
-    return _.random(min, max);
-}
-
 exports.issueToken = function(user, done) {
     RememberMe.issueToken(user.email, successCb, failCb);
 
@@ -34,24 +27,19 @@ exports.issueToken = function(user, done) {
 };
 
 exports.verifyToken = function(encodedLoginCookie, done) {
-    var loginCookie = new Buffer(encodedLoginCookie, 'base64').toString('ascii'),
-        loginCookieParts = loginCookie.split('|');
+    RememberMe.findAndRemoveToken(encodedLoginCookie, notFoundCb, successCb, failCb);
 
-    RememberMe.findOneAndRemove({
-        series: loginCookieParts[0],
-        token: loginCookieParts[1],
-        email: loginCookieParts[2]
-    }, function(err, result) {
-        if (!result) {
-            console.log('Invalid cookie: ' + loginCookie);
+    function notFoundCb() {
+        return done(null, false, { message: 'Invalid cookie' });
+    }
 
-            return done(null, false, { message: 'Invalid cookie' });
-        } else {
-            console.log('Cookie valid for user: ' + result.email);
+    function successCb(email) {
+        return done(null, { email: email });
+    }
 
-            return done(null, { email: result.email });
-        }
-    });
+    function failCb() {
+        return done(null, false, { message: 'Could not find cookie' });
+    }
 };
 
 exports.Email = function(host, port) {

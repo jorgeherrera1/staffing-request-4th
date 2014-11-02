@@ -36,4 +36,26 @@ RememberMeSchema.statics.issueToken = function(email, successCb, failCb) {
     });
 };
 
+RememberMeSchema.statics.findAndRemoveToken = function(encodedLoginCookie, notFoundCb, successCb, failCb) {
+    var loginCookie = new Buffer(encodedLoginCookie, 'base64').toString('ascii'),
+        loginCookieParts = loginCookie.split('|'),
+        rememberMe = {
+            series: loginCookieParts[0],
+            token: loginCookieParts[1],
+            email: loginCookieParts[2]
+        };
+
+    this.findOneAndRemove(rememberMe, function(err, result) {
+        if (err) {
+            return failCb();
+        }
+
+        if (!result) {
+            return notFoundCb();
+        } else {
+            return successCb(result.email);
+        }
+    });
+};
+
 mongoose.model('RememberMe', RememberMeSchema);
