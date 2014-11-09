@@ -120,7 +120,11 @@ exports.lastUsedValues = function(req, res) {
 exports.logout = function(req, res) {
     var encodedLoginCookie = _.result(req.cookies, 'staffing_request_remember_me');
 
-    RememberMe.findAndRemoveToken(encodedLoginCookie, cb, cb, cb);
+    if (encodedLoginCookie) {
+        RememberMe.findAndRemoveToken(encodedLoginCookie, cb, cb, cb);
+    } else {
+        return cb();
+    }
 
     function cb() {
         // clear the remember me cookie when logging out
