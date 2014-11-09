@@ -5,6 +5,7 @@
  */
 var mongoose = require('mongoose'),
     moment = require('moment'),
+    DocxGen=require('docxtemplater'),
     Schema = mongoose.Schema;
 
 var StaffingRequestSchema = new Schema({
@@ -30,6 +31,23 @@ var StaffingRequestSchema = new Schema({
         enum: ['Possible', 'Yes', 'No']
     }
 });
+
+StaffingRequestSchema.methods.generateDocument = function(cb) {
+    var staffingRequest = this.toObject();
+
+    new DocxGen()
+        .loadFromFile(process.cwd() + '/docs/staffing-request-template.docx', {
+            async: true
+        })
+        .success(function(doc) {
+            doc.setTags(staffingRequest);
+            doc.applyTags();
+            doc.output({
+                name: 'Staffing-Request-' + staffingRequest.requestNo + '.docx',
+                callback: cb
+            });
+        });
+};
 
 StaffingRequestSchema.statics.findByRequestNo = function(requestNo, cb) {
     var query = { requestNo: requestNo };
