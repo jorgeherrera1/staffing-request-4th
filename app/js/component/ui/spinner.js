@@ -7,7 +7,7 @@ define(['flight/lib/component'], function(defineComponent) {
 
     // component definition
     function spinner() {
-        this.defaultAttrs({
+        this.attributes({
             // selectors
             minusButtonSelector: 'a:first-child',
             plusButtonSelector: 'a:last-child'

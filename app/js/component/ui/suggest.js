@@ -7,7 +7,7 @@ define(['flight/lib/component'], function(defineComponent) {
 
     // component definition
     function suggest() {
-        this.defaultAttrs({
+        this.attributes({
             fromData: '/suggest/lastUsedValues.json',
             keepTime: 5 // TODO: change default keep time
         });

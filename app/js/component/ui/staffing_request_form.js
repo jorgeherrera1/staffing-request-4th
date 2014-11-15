@@ -8,7 +8,7 @@ define(['flight/lib/component'], function(defineComponent) {
     // component definition
     function staffingRequestForm() {
 
-        this.defaultAttrs({
+        this.attributes({
             // selectors
             requestNoSelector: '#requestNo',
             requestedBySelector: '#requestedBy',
