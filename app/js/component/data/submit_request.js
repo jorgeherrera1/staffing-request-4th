@@ -11,7 +11,7 @@ define(['flight/lib/component'], function(defineComponent) {
             submitRequestEndpoint: '/staffing-request'
         });
 
-        this.submitRequest = function(event, data) {
+        this.saveRequest = function(event, data) {
             var that = this;
 
             $.post('/staffing-request', data, function(staffingRequest) {
@@ -20,7 +20,7 @@ define(['flight/lib/component'], function(defineComponent) {
         };
 
         this.after('initialize', function() {
-            this.on('uiRequestSubmitted', this.submitRequest);
+            this.on('uiRequestSaved', this.saveRequest);
         });
     }
 

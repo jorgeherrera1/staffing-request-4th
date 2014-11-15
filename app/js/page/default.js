@@ -26,7 +26,7 @@ define(
     function initialize() {
         SuggestUI.attachTo('[data-suggest]');
         SubmitRequestData.attachTo(document);
-        StaffingRequestFormUI.attachTo('form');
+        StaffingRequestFormUI.attachTo('.staffing-request');
         DatePickerUI.attachTo('[data-date-format]');
         MultipleChoiceUI.attachTo('.btn-group');
         TagsUI.attachTo('#location');

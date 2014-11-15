@@ -21,13 +21,11 @@ define(['flight/lib/component'], function(defineComponent) {
             minimumExperienceSelector: '#minimumExperience',
             locationSelector: '#location',
             travelRequiredSelector: '#travelRequired .active',
-            submitSelector: '#submitRequest'
+            saveSelector: '#saveRequest'
         });
 
-        this.submitRequest = function(event) {
+        this.saveRequest = function(event) {
             event.preventDefault();
-
-            $(event.target).button('loading');
 
             var data = {
                 requestNo: this.select('requestNoSelector').text(),
@@ -43,7 +41,7 @@ define(['flight/lib/component'], function(defineComponent) {
                 travelRequired: $.trim(this.select('travelRequiredSelector').text())
             };
 
-            this.trigger('uiRequestSubmitted', data);
+            this.trigger('uiRequestSaved', data);
         };
 
         this.redirectToStaffingRequest = function(event, staffingRequest) {
@@ -52,7 +50,7 @@ define(['flight/lib/component'], function(defineComponent) {
 
         this.after('initialize', function() {
             this.on('click', {
-                'submitSelector': this.submitRequest
+                'saveSelector': this.saveRequest
             });
 
             this.on(document, 'dataRequestSaved', this.redirectToStaffingRequest);
