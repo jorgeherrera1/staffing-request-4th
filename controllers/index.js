@@ -6,7 +6,6 @@
 var mongoose = require('mongoose'),
     moment = require('moment'),
     _ = require('lodash'),
-    path = require('path'),
     StaffingRequest = mongoose.model('StaffingRequest'),
     RememberMe = mongoose.model('RememberMe'),
     utils = require(process.cwd() + '/utils');
@@ -93,10 +92,10 @@ exports.downloadStaffingRequest = function(req, res) {
     });
 
     function download(staffingRequest) {
-        staffingRequest.generateDocument(function(filePath) {
-            var fileName = path.basename(filePath);
-
-            res.download(filePath, fileName);
+        staffingRequest.generateDocument(function(file, fileName) {
+            res.setHeader('Content-disposition', 'attachment; filename=' + fileName);
+            res.setHeader('Content-type', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document');
+            res.send(new Buffer(file, 'binary'));
         });
     }
 };

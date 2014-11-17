@@ -32,9 +32,9 @@ var StaffingRequestSchema = new Schema({
     }
 });
 
-StaffingRequestSchema.methods.generateDocument = function(cb) {
+StaffingRequestSchema.methods.generateDocument = function(callback) {
     var staffingRequest = this.toObject(),
-        filePath = 'Staffing-Request-' + staffingRequest.requestNo + '.docx';
+        fileName = 'Staffing-Request-' + staffingRequest.requestNo + '.docx';
 
     new DocxGen()
         .loadFromFile(process.cwd() + '/docs/staffing-request-template.docx', {
@@ -43,10 +43,12 @@ StaffingRequestSchema.methods.generateDocument = function(cb) {
         .success(function(doc) {
             doc.setTags(staffingRequest);
             doc.applyTags();
-            doc.output({
-                name: filePath,
-                callback: cb(filePath)
+            var file = doc.output({
+                download: false,
+                type: 'string'
             });
+
+            callback(file, fileName);
         });
 };
 
