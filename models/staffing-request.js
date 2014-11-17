@@ -5,7 +5,7 @@
  */
 var mongoose = require('mongoose'),
     moment = require('moment'),
-    DocxGen=require('docxtemplater'),
+    DocxGen = require('docxtemplater'),
     Schema = mongoose.Schema;
 
 var StaffingRequestSchema = new Schema({
@@ -33,7 +33,8 @@ var StaffingRequestSchema = new Schema({
 });
 
 StaffingRequestSchema.methods.generateDocument = function(cb) {
-    var staffingRequest = this.toObject();
+    var staffingRequest = this.toObject(),
+        filePath = 'Staffing-Request-' + staffingRequest.requestNo + '.docx';
 
     new DocxGen()
         .loadFromFile(process.cwd() + '/docs/staffing-request-template.docx', {
@@ -43,8 +44,8 @@ StaffingRequestSchema.methods.generateDocument = function(cb) {
             doc.setTags(staffingRequest);
             doc.applyTags();
             doc.output({
-                name: 'Staffing-Request-' + staffingRequest.requestNo + '.docx',
-                callback: cb
+                name: filePath,
+                callback: cb(filePath)
             });
         });
 };

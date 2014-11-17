@@ -21,7 +21,8 @@ define(['flight/lib/component'], function(defineComponent) {
             minimumExperienceSelector: '#minimumExperience',
             locationSelector: '#location',
             travelRequiredSelector: '#travelRequired .active',
-            saveSelector: '#saveRequest'
+            saveSelector: '#saveRequest',
+            downloadSelector: '#downloadRequest'
         });
 
         this.saveRequest = function(event) {
@@ -45,7 +46,15 @@ define(['flight/lib/component'], function(defineComponent) {
             this.trigger('uiUserClickedSave', data);
         };
 
-        this.redirectToStaffingRequest = function(event, staffingRequest) {
+        this.downloadRequest = function() {
+            if (window.location.pathname.match(/(\/staffing\-request\/)([0-9]+)/)) {
+                window.location.pathname = window.location.pathname + '/download';
+            } else {
+                console.log('not yet implemented');
+            }
+        };
+
+        this.saveRequestWasSuccessful = function(event, staffingRequest) {
             if (window.location.pathname.match(/(\/staffing\-request\/)([0-9]+)/)) {
                 this.trigger('uiHideModal');
             } else {
@@ -55,10 +64,11 @@ define(['flight/lib/component'], function(defineComponent) {
 
         this.after('initialize', function() {
             this.on('click', {
-                'saveSelector': this.saveRequest
+                'saveSelector': this.saveRequest,
+                'downloadSelector': this.downloadRequest
             });
 
-            this.on(document, 'dataRequestSaved', this.redirectToStaffingRequest);
+            this.on(document, 'dataRequestSaved', this.saveRequestWasSuccessful);
         });
     }
 

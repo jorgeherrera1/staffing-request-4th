@@ -6,6 +6,7 @@
 var mongoose = require('mongoose'),
     moment = require('moment'),
     _ = require('lodash'),
+    path = require('path'),
     StaffingRequest = mongoose.model('StaffingRequest'),
     RememberMe = mongoose.model('RememberMe'),
     utils = require(process.cwd() + '/utils');
@@ -82,6 +83,20 @@ exports.showExistingStaffingRequest = function(req, res) {
             }
             ,staffingRequest: staffingRequest.toObject(),
             js: jsLib
+        });
+    }
+};
+
+exports.downloadStaffingRequest = function(req, res) {
+    StaffingRequest.findByRequestNo(req.params.requestNo, function(error, staffingRequest) {
+        download(staffingRequest);
+    });
+
+    function download(staffingRequest) {
+        staffingRequest.generateDocument(function(filePath) {
+            var fileName = path.basename(filePath);
+
+            res.download(filePath, fileName);
         });
     }
 };
