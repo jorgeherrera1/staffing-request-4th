@@ -6,6 +6,7 @@
 var mongoose = require('mongoose'),
     moment = require('moment'),
     _ = require('lodash'),
+    path = require('path'),
     StaffingRequest = mongoose.model('StaffingRequest'),
     RememberMe = mongoose.model('RememberMe'),
     utils = require(process.cwd() + '/utils');
@@ -86,6 +87,20 @@ exports.showExistingStaffingRequest = function(req, res) {
     }
 };
 
+exports.downloadStaffingRequest = function(req, res) {
+    StaffingRequest.findByRequestNo(req.params.requestNo, function(error, staffingRequest) {
+        download(staffingRequest);
+    });
+
+    function download(staffingRequest) {
+        staffingRequest.generateDocument(function(filePath) {
+            var fileName = path.basename(filePath);
+
+            res.download(filePath, fileName);
+        });
+    }
+};
+
 exports.saveStaffingRequest = function(req, res) {
     var staffingRequest = req.body;
 
@@ -120,7 +135,11 @@ exports.lastUsedValues = function(req, res) {
 exports.logout = function(req, res) {
     var encodedLoginCookie = _.result(req.cookies, 'staffing_request_remember_me');
 
-    RememberMe.findAndRemoveToken(encodedLoginCookie, cb, cb, cb);
+    if (encodedLoginCookie) {
+        RememberMe.findAndRemoveToken(encodedLoginCookie, cb, cb, cb);
+    } else {
+        return cb();
+    }
 
     function cb() {
         // clear the remember me cookie when logging out

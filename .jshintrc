@@ -30,6 +30,8 @@
         "it",
         "requirejs",
         "setupComponent",
-        "Bloodhound"
+        "Bloodhound",
+        "Hogan",
+        "alert"
     ]
 }

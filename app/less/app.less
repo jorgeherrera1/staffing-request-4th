@@ -1,5 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,300,200,100&subset=latin,cyrillic);
 @import "../../bower_components/bootstrap/less/bootstrap";
+@import "../../bower_components/fontawesome/less/font-awesome";
 @import "variables";
 @import "../../bower_components/eonasdan-bootstrap-datetimepicker/src/less/bootstrap-datetimepicker";
 @import "../../bower_components/bootstrap-tagsinput/dist/bootstrap-tagsinput";
@@ -14,6 +15,10 @@ label {
   font-weight: 200;
 }
 
+a {
+  color: #ffffff;
+}
+
 .datepicker {
   color: #000000;
 }
@@ -22,21 +27,9 @@ label {
   display: block;
 }
 
-header {
-  .make-row();
-
-  .header-title {
-    .make-md-column(6);
-  }
-  .header-user {
-    .make-md-column(6);
-
-    h5 {
-      line-height: 39px;
-      vertical-align: middle;
-      float: right;
-    }
-  }
+.modal {
+  color: @brand-info;
+  font-size: 24px;
 }
 
 .page {
@@ -45,6 +38,13 @@ header {
   .signin-box {
     .make-md-column-offset(6);
     padding: 20px;
+  }
+}
+
+.staffing-request {
+  .staffing-request-toolbar {
+    .make-row();
+    margin: -25px 0 10px;
   }
 }
 

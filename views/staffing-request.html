@@ -1,146 +1,160 @@
-{{#staffingRequest}}
 <div class="staffing-request">
-    <form role="form">
-        <div class="panel-group">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <div class="row">
-                        <div class="col-md-10">
-                            <h4 class="panel-title">Request No: <span id="requestNo">{{requestNo}}</span></h4>
-                        </div>
-                        <div class="col-md-2">
-                            <button id="submitRequest" type="button" class="btn btn-sm btn-default pull-right" data-loading-text="Submitting...">Submit</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="form-group col-md-4">
-                            <label for="requestedBy">Requested By</label>
-                            <input id="requestedBy" type="text" class="form-control" autofocus autocomplete="off" value="{{requestedBy}}" data-suggest>
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="requestedOn">Requested On</label>
-                            <div class="input-group">
-                                <input id="requestedOn" type="text" class="form-control" data-date-format="YYYY/MM/DD" value="{{requestedOn}}">
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                            </div>
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="newOrPresale">New or Presale?</label>
-                            <div id="newOrPresale" class="btn-group" data-toggle="buttons" data-selected-value="{{newOrPresale}}">
-                                <label class="btn btn-primary">
-                                    <input type="radio" name="options">New
-                                </label>
-                                <label class="btn btn-primary">
-                                    <input type="radio" name="options">Presale
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group col-md-4">
-                            <label for="dateNeeded">Date Needed</label>
-                            <div class="input-group">
-                                <input id="dateNeeded" type="text" class="form-control" data-date-format="YYYY/MM/DD" value="{{dateNeeded}}">
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-                            </div>
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="companyName">Company Name</label>
-                            <input id="companyName" type="text" class="form-control" autocomplete="off" value="{{companyName}}" data-suggest>
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="contactName">Contact Name</label>
-                            <input id="contactName" type="text" class="form-control" autocomplete="off" value="{{contactName}}" data-suggest>
-                        </div>
-                    </div>
-                </div>
+    {{#user}}
+    <div class="staffing-request-toolbar">
+        <div class="btn-toolbar pull-right" role="toolbar" aria-label="Toolbar">
+            <div class="btn-group" role="group" aria-label="Staffing Request Options">
+                <button id="saveRequest" type="button" class="btn btn-primary"><i class="fa fa-save"></i> Save</button>
+                <button id="downloadRequest" type="button" class="btn btn-primary"><i class="fa fa-download"></i> Download</button>
             </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">Position</h4>
-                </div>
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="form-group col-md-4">
-                            <label for="newOrBackfill">New or Backfill?</label>
-                            <div id="newOrBackfill" class="btn-group" data-toggle="buttons" data-selected-value="{{newOrBackfill}}" >
-                                <label class="btn btn-primary">
-                                    <input type="radio" name="options">New
-                                </label>
-                                <label class="btn btn-primary">
-                                    <input type="radio" name="options">Backfill
-                                </label>
+            <div class="btn-group" role="group" aria-label="User Options">
+                <button type="button" class="btn btn-primary"><i class="fa fa-sign-out"></i> Sign Out</button>
+            </div>
+        </div>
+    </div>
+    {{/user}}
+    {{#staffingRequest}}
+    <div class="container">
+        <div class="row">
+            <form role="form">
+                <div class="panel-group">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <h4 class="panel-title">Request No: <span id="requestNo">{{requestNo}}</span></h4>
+                                </div>
                             </div>
                         </div>
-                        <div class="form-group col-md-4">
-                            <label for="positionName">Position</label>
-                            <input id="positionName" type="text" class="form-control" autocomplete="off" value="{{positionName}}" data-suggest>
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="minimumExperience">Minimum Experience</label>
-                            <div class= "input-group">
-                                <input id="minimumExperience" type="text" class="form-control" autocomplete="off" value="{{minimumExperience}}">
-                                <div class="input-group-btn">
-                                    <a type="button" class="btn btn-primary">
-                                        <span class="glyphicon glyphicon-minus"></span>
-                                    </a>
-                                    <a type="button" class="btn btn-primary">
-                                        <span class="glyphicon glyphicon-plus"></span>
-                                    </a>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="form-group col-md-4">
+                                    <label for="requestedBy">Requested By</label>
+                                    <input id="requestedBy" type="text" class="form-control" autofocus autocomplete="off" value="{{requestedBy}}" data-suggest>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="requestedOn">Requested On</label>
+                                    <div class="input-group">
+                                        <input id="requestedOn" type="text" class="form-control" data-date-format="YYYY/MM/DD" value="{{requestedOn}}">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="newOrPresale">New or Presale?</label>
+                                    <div id="newOrPresale" class="btn-group" data-toggle="buttons" data-selected-value="{{newOrPresale}}">
+                                        <label class="btn btn-primary">
+                                            <input type="radio" name="options">New
+                                        </label>
+                                        <label class="btn btn-primary">
+                                            <input type="radio" name="options">Presale
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-4">
+                                    <label for="dateNeeded">Date Needed</label>
+                                    <div class="input-group">
+                                        <input id="dateNeeded" type="text" class="form-control" data-date-format="YYYY/MM/DD" value="{{dateNeeded}}">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="companyName">Company Name</label>
+                                    <input id="companyName" type="text" class="form-control" autocomplete="off" value="{{companyName}}" data-suggest>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="contactName">Contact Name</label>
+                                    <input id="contactName" type="text" class="form-control" autocomplete="off" value="{{contactName}}" data-suggest>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="form-group col-md-4">
-                            <label for="location">Location</label>
-                            <input id="location" type="text" autocomplete="off" class="form-control" value="{{location}}">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">Position</h4>
                         </div>
-                        <div class="form-group col-md-4">
-                            <label for="length">Length</label>
-                            <input id="length" type="text" class="form-control">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="form-group col-md-4">
+                                    <label for="newOrBackfill">New or Backfill?</label>
+                                    <div id="newOrBackfill" class="btn-group" data-toggle="buttons" data-selected-value="{{newOrBackfill}}" >
+                                        <label class="btn btn-primary">
+                                            <input type="radio" name="options">New
+                                        </label>
+                                        <label class="btn btn-primary">
+                                            <input type="radio" name="options">Backfill
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="positionName">Position</label>
+                                    <input id="positionName" type="text" class="form-control" autocomplete="off" value="{{positionName}}" data-suggest>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="minimumExperience">Minimum Experience</label>
+                                    <div class= "input-group">
+                                        <input id="minimumExperience" type="text" class="form-control" autocomplete="off" value="{{minimumExperience}}">
+                                        <div class="input-group-btn">
+                                            <a type="button" class="btn btn-primary">
+                                                <span class="glyphicon glyphicon-minus"></span>
+                                            </a>
+                                            <a type="button" class="btn btn-primary">
+                                                <span class="glyphicon glyphicon-plus"></span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-4">
+                                    <label for="location">Location</label>
+                                    <input id="location" type="text" autocomplete="off" class="form-control" value="{{location}}">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="length">Length</label>
+                                    <input id="length" type="text" class="form-control">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="travelRequired">Travel Required?</label>
+                                    <div id="travelRequired" class="btn-group" data-toggle="buttons" data-selected-value="{{travelRequired}}">
+                                        <label class="btn btn-primary">
+                                            <input type="radio" name="options">Possible
+                                        </label>
+                                        <label class="btn btn-primary">
+                                            <input type="radio" name="options">Yes
+                                        </label>
+                                        <label class="btn btn-primary">
+                                            <input type="radio" name="options">No
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group col-md-4">
-                            <label for="travelRequired">Travel Required?</label>
-                            <div id="travelRequired" class="btn-group" data-toggle="buttons" data-selected-value="{{travelRequired}}">
-                                <label class="btn btn-primary">
-                                    <input type="radio" name="options">Possible
-                                </label>
-                                <label class="btn btn-primary">
-                                    <input type="radio" name="options">Yes
-                                </label>
-                                <label class="btn btn-primary">
-                                    <input type="radio" name="options">No
-                                </label>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">Skills</h4>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="form-group col-md-4">
+                                    <label for="englishLevel">English Level</label>
+                                    <input id="englishLevel" type="text" class="form-control">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="requiredSkills">Required Skills</label>
+                                    <input id="requiredSkills" type="text" class="form-control">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="additionalDetails">Additional Details</label>
+                                    <textarea id="additionalDetails" class="form-control" rows="5"></textarea>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4 class="panel-title">Skills</h4>
-                </div>
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="form-group col-md-4">
-                            <label for="englishLevel">English Level</label>
-                            <input id="englishLevel" type="text" class="form-control">
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="requiredSkills">Required Skills</label>
-                            <input id="requiredSkills" type="text" class="form-control">
-                        </div>
-                        <div class="form-group col-md-4">
-                            <label for="additionalDetails">Additional Details</label>
-                            <textarea id="additionalDetails" class="form-control" rows="5"></textarea>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            </form>
         </div>
-    </form>
+    </div>
+    {{/staffingRequest}}
 </div>
-{{/staffingRequest}}

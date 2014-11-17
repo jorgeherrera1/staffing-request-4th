@@ -8,7 +8,7 @@ define(['flight/lib/component'], function(defineComponent) {
     // component definition
     function staffingRequestForm() {
 
-        this.defaultAttrs({
+        this.attributes({
             // selectors
             requestNoSelector: '#requestNo',
             requestedBySelector: '#requestedBy',
@@ -21,13 +21,12 @@ define(['flight/lib/component'], function(defineComponent) {
             minimumExperienceSelector: '#minimumExperience',
             locationSelector: '#location',
             travelRequiredSelector: '#travelRequired .active',
-            submitSelector: '#submitRequest'
+            saveSelector: '#saveRequest',
+            downloadSelector: '#downloadRequest'
         });
 
-        this.submitRequest = function(event) {
+        this.saveRequest = function(event) {
             event.preventDefault();
-
-            $(event.target).button('loading');
 
             var data = {
                 requestNo: this.select('requestNoSelector').text(),
@@ -43,19 +42,33 @@ define(['flight/lib/component'], function(defineComponent) {
                 travelRequired: $.trim(this.select('travelRequiredSelector').text())
             };
 
-            this.trigger('uiRequestSubmitted', data);
+            this.trigger('uiShowModal', { message: 'Saving...' });
+            this.trigger('uiUserClickedSave', data);
         };
 
-        this.redirectToStaffingRequest = function(event, staffingRequest) {
-            window.location.pathname = '/staffing-request/' + staffingRequest.requestNo;
+        this.downloadRequest = function() {
+            if (window.location.pathname.match(/(\/staffing\-request\/)([0-9]+)/)) {
+                window.location.pathname = window.location.pathname + '/download';
+            } else {
+                console.log('not yet implemented');
+            }
+        };
+
+        this.saveRequestWasSuccessful = function(event, staffingRequest) {
+            if (window.location.pathname.match(/(\/staffing\-request\/)([0-9]+)/)) {
+                this.trigger('uiHideModal');
+            } else {
+                window.location.pathname = '/staffing-request/' + staffingRequest.requestNo;
+            }
         };
 
         this.after('initialize', function() {
             this.on('click', {
-                'submitSelector': this.submitRequest
+                'saveSelector': this.saveRequest,
+                'downloadSelector': this.downloadRequest
             });
 
-            this.on(document, 'dataRequestSaved', this.redirectToStaffingRequest);
+            this.on(document, 'dataRequestSaved', this.saveRequestWasSuccessful);
         });
     }
 

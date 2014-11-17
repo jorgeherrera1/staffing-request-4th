@@ -28,6 +28,7 @@ module.exports = function(passport) {
 
     router.get('/staffing-request', utils.isLoggedIn, controllers.showNewStaffingRequest);
     router.get('/staffing-request/:requestNo', utils.isLoggedIn, controllers.showExistingStaffingRequest);
+    router.get('/staffing-request/:requestNo/download', utils.isLoggedIn, controllers.downloadStaffingRequest);
 
     router.post('/staffing-request', utils.isLoggedIn, controllers.saveStaffingRequest);
     router.post('/staffing-request/:requestNo', utils.isLoggedIn, controllers.saveStaffingRequest);

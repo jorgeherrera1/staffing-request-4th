@@ -8,7 +8,7 @@ define(['flight/lib/component'], function(defineComponent) {
     // component definition
     function multipleChoice() {
 
-        this.defaultAttrs({
+        this.attributes({
             // selectors
             choicesSelector: '.btn'
         });

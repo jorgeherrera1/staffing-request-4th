@@ -8,7 +8,7 @@ define(['flight/lib/component'], function(defineComponent) {
     // component definition
     function tags() {
 
-        this.defaultAttrs({
+        this.attributes({
             toggleIndicator: false,
             tagSelector: '.tag'
         });
