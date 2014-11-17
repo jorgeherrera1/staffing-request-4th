@@ -9,7 +9,8 @@ define(
         'component_ui/multiple_choice',
         'component_ui/suggest',
         'component_ui/tags',
-        'component_ui/spinner'
+        'component_ui/spinner',
+        'component_ui/modal'
     ],
 
     function(
@@ -19,7 +20,8 @@ define(
         MultipleChoiceUI,
         SuggestUI,
         TagsUI,
-        SpinnerUI) {
+        SpinnerUI,
+        ModalUI) {
 
     return initialize;
 
@@ -34,6 +36,7 @@ define(
             toggleIndicator: true
         });
         SpinnerUI.attachTo('#minimumExperience');
+        ModalUI.attachTo(document);
     }
 
 });

@@ -41,7 +41,9 @@ gulp.task('images', function() {
 });
 
 gulp.task('fonts', function() {
-    return gulp.src('./bower_components/bootstrap/fonts/**')
+    return gulp.src([
+        './bower_components/bootstrap/fonts/**',
+        './bower_components/fontawesome/fonts/**'])
         .pipe(gulp.dest('./public/fonts'));
 });
 
@@ -53,6 +55,7 @@ gulp.task('lib', function() {
         './bower_components/moment/moment.js',
         './bower_components/eonasdan-bootstrap-datetimepicker/src/js/bootstrap-datetimepicker.js',
         './bower_components/bootstrap-tagsinput/dist/bootstrap-tagsinput.js',
+        './bower_components/hogan/web/builds/3.0.2/hogan-3.0.2.js',
         './bower_components/requirejs/require.js'])
         .pipe(uglify())
         .pipe(concat('lib.js'))

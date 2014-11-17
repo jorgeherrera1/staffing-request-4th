@@ -41,11 +41,16 @@ define(['flight/lib/component'], function(defineComponent) {
                 travelRequired: $.trim(this.select('travelRequiredSelector').text())
             };
 
-            this.trigger('uiRequestSaved', data);
+            this.trigger('uiShowModal', { message: 'Saving...' });
+            this.trigger('uiUserClickedSave', data);
         };
 
         this.redirectToStaffingRequest = function(event, staffingRequest) {
-            window.location.pathname = '/staffing-request/' + staffingRequest.requestNo;
+            if (window.location.pathname.match(/(\/staffing\-request\/)([0-9]+)/)) {
+                this.trigger('uiHideModal');
+            } else {
+                window.location.pathname = '/staffing-request/' + staffingRequest.requestNo;
+            }
         };
 
         this.after('initialize', function() {

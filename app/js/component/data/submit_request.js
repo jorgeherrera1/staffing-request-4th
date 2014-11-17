@@ -8,19 +8,19 @@ define(['flight/lib/component'], function(defineComponent) {
     function staffingRequestForm() {
 
         this.attributes({
-            submitRequestEndpoint: '/staffing-request'
+            saveStaffingRequestEndpoint: '/staffing-request'
         });
 
         this.saveRequest = function(event, data) {
             var that = this;
 
-            $.post('/staffing-request', data, function(staffingRequest) {
+            $.post(this.attr.saveStaffingRequestEndpoint, data, function(staffingRequest) {
                 that.trigger('dataRequestSaved', staffingRequest);
             });
         };
 
         this.after('initialize', function() {
-            this.on('uiRequestSaved', this.saveRequest);
+            this.on('uiUserClickedSave', this.saveRequest);
         });
     }
 
