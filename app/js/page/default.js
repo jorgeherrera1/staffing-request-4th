@@ -10,7 +10,8 @@ define(
         'component_ui/suggest',
         'component_ui/tags',
         'component_ui/spinner',
-        'component_ui/modal'
+        'component_ui/modal',
+        'component_ui/length'
     ],
 
     function(
@@ -21,7 +22,8 @@ define(
         SuggestUI,
         TagsUI,
         SpinnerUI,
-        ModalUI) {
+        ModalUI,
+        LengthUI) {
 
     return initialize;
 
@@ -37,6 +39,7 @@ define(
         });
         SpinnerUI.attachTo('#minimumExperience');
         ModalUI.attachTo(document);
+        LengthUI.attachTo('#length');
     }
 
 });
