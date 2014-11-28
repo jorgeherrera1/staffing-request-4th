@@ -20,6 +20,7 @@ define(['flight/lib/component'], function(defineComponent) {
             positionNameSelector: '#positionName',
             minimumExperienceSelector: '#minimumExperience',
             locationSelector: '#location',
+            lengthSelector: '#length',
             travelRequiredSelector: '#travelRequired .active',
             saveSelector: '#saveRequest',
             downloadSelector: '#downloadRequest'
@@ -39,6 +40,7 @@ define(['flight/lib/component'], function(defineComponent) {
                 positionName: this.select('positionNameSelector').val(),
                 minimumExperience: this.select('minimumExperienceSelector').val(),
                 location: this.select('locationSelector').data('tags'),
+                length: 'Permanent',
                 travelRequired: $.trim(this.select('travelRequiredSelector').text())
             };
 

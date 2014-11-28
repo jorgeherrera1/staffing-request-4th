@@ -26,6 +26,7 @@ var StaffingRequestSchema = new Schema({
     positionName: String,
     minimumExperience: Number,
     location: Array,
+    length: String,
     travelRequired: {
         type: String,
         enum: ['Possible', 'Yes', 'No']
