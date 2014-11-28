@@ -60,7 +60,8 @@ exports.showNewStaffingRequest = function(req, res) {
         ,staffingRequest: {
             requestedBy: req.user.email,
             requestedOn: moment().format('YYYY/MM/DD'),
-            minimumExperience: 1
+            minimumExperience: 1,
+            length: 'Permanent'
         },
         js: jsLib
     });

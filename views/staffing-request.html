@@ -112,13 +112,15 @@
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="length">Length</label>
-                                    <div id="length" class="checkbox">
+                                    <div id="length" class="checkbox" data-length="{{length}}">
                                         <label>
                                             <input id="permanent" type="checkbox"> Permanent
                                         </label>
-                                        &nbsp;&nbsp;or&nbsp;&nbsp;
-                                        <input id="months" type="text" size="1" autocomplete="off" class="form-control" style="display: inline-block; width: auto;">
-                                        &nbsp;&nbsp;Months
+                                        <span id="months">
+                                            &nbsp;&nbsp;or&nbsp;&nbsp;
+                                            <input type="text" size="1" autocomplete="off" class="form-control" style="display: inline-block; width: auto;">
+                                            &nbsp;&nbsp;Months
+                                        </span>
                                     </div>
                                 </div>
                                 <div class="form-group col-md-4">
