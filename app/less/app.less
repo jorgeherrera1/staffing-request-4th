@@ -19,6 +19,14 @@ a {
   color: #ffffff;
 }
 
+input[type=checkbox] ~ span {
+  text-decoration: line-through;
+}
+
+input[type=checkbox]:checked ~ span {
+  text-decoration: none;
+}
+
 .checkbox {
   margin-top: 0;
   margin-bottom: 0;
