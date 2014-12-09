@@ -38,6 +38,7 @@ define(['flight/lib/component'], function(defineComponent) {
             } else {
                 this.select('permanentSelector').prop('checked', false);
                 this.select('monthsPartSelector').removeClass('invisible');
+                this.select('monthsSelector').val(this.$node.attr('data-length').replace(/[^0-9\.]/g, ''));
             }
 
             this.on('click', {
