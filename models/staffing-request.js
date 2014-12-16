@@ -30,7 +30,8 @@ var StaffingRequestSchema = new Schema({
     travelRequired: {
         type: String,
         enum: ['Possible', 'Yes', 'No']
-    }
+    },
+    englishLevel: String
 });
 
 StaffingRequestSchema.methods.generateDocument = function(callback) {

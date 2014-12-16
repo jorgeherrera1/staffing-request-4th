@@ -22,6 +22,7 @@ define(['flight/lib/component'], function(defineComponent) {
             locationSelector: '#location',
             lengthSelector: '#length',
             travelRequiredSelector: '#travelRequired .active',
+            englishLevel: '#englishLevel',
             saveSelector: '#saveRequest',
             downloadSelector: '#downloadRequest'
         });
@@ -41,7 +42,8 @@ define(['flight/lib/component'], function(defineComponent) {
                 minimumExperience: this.select('minimumExperienceSelector').val(),
                 location: this.select('locationSelector').data('tags'),
                 length: this.select('lengthSelector').data('length'),
-                travelRequired: $.trim(this.select('travelRequiredSelector').text())
+                travelRequired: $.trim(this.select('travelRequiredSelector').text()),
+                englishLevel: $.trim(this.select('englishLevel').val())
             };
 
             this.trigger('uiShowModal', { message: 'Saving...' });

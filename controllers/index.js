@@ -61,7 +61,8 @@ exports.showNewStaffingRequest = function(req, res) {
             requestedBy: req.user.email,
             requestedOn: moment().format('YYYY/MM/DD'),
             minimumExperience: 1,
-            length: 'Permanent'
+            length: 'Permanent',
+            englishLevel: 'Good'
         },
         js: jsLib
     });
