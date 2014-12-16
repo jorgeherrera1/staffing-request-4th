@@ -70,7 +70,11 @@ exports.showNewStaffingRequest = function(req, res) {
 
 exports.showExistingStaffingRequest = function(req, res) {
     StaffingRequest.findByRequestNo(req.params.requestNo, function(error, staffingRequest) {
-        render(staffingRequest);
+        if (staffingRequest) {
+            render(staffingRequest);
+        } else {
+            res.redirect('/staffing-request');
+        }
     });
 
     function render(staffingRequest) {
