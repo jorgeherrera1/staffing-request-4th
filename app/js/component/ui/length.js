@@ -28,6 +28,9 @@ define(['flight/lib/component'], function(defineComponent) {
         this.onlyNumbers = function(event) {
             var currentValue = event.target.value;
             event.target.value = currentValue.replace(/[^0-9\.]/g, '');
+
+            var months = event.target.value + ' months';
+            this.$node.attr('data-length', months);
         };
 
         this.after('initialize', function() {

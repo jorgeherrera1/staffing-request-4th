@@ -40,7 +40,7 @@ define(['flight/lib/component'], function(defineComponent) {
                 positionName: this.select('positionNameSelector').val(),
                 minimumExperience: this.select('minimumExperienceSelector').val(),
                 location: this.select('locationSelector').data('tags'),
-                length: 'Permanent',
+                length: this.select('lengthSelector').data('length'),
                 travelRequired: $.trim(this.select('travelRequiredSelector').text())
             };
 
